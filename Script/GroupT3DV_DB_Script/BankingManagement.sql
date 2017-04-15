@@ -11,6 +11,18 @@ go
 use BankingManagement
 go
 
+create table MSTUSER
+(
+	PSN_CD decimal,
+	USERID varchar(8),
+	PASSWD varchar(8),
+	USERNAME nvarchar(80),
+	DELETE_YMD datetime,
+	INSERT_YMD datetime
+	primary key(PSN_CD)
+)
+go
+
 create table KhachHang
 (
 	MaKH nvarchar(30),
