@@ -1,0 +1,6 @@
+c:\users\tien vu khach\documents\visual studio 2012\Projects\SSIS_ReadDB\SSIS_ReadDB\bin\Debug\SSIS_ReadDB.exe.config
+c:\users\tien vu khach\documents\visual studio 2012\Projects\SSIS_ReadDB\SSIS_ReadDB\bin\Debug\SSIS_ReadDB.exe
+c:\users\tien vu khach\documents\visual studio 2012\Projects\SSIS_ReadDB\SSIS_ReadDB\bin\Debug\SSIS_ReadDB.pdb
+c:\users\tien vu khach\documents\visual studio 2012\Projects\SSIS_ReadDB\SSIS_ReadDB\obj\Debug\SSIS_ReadDB.csprojResolveAssemblyReference.cache
+c:\users\tien vu khach\documents\visual studio 2012\Projects\SSIS_ReadDB\SSIS_ReadDB\obj\Debug\SSIS_ReadDB.exe
+c:\users\tien vu khach\documents\visual studio 2012\Projects\SSIS_ReadDB\SSIS_ReadDB\obj\Debug\SSIS_ReadDB.pdb
