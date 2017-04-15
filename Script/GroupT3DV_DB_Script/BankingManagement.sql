@@ -14,12 +14,12 @@ go
 create table KhachHang
 (
 	MaKH nvarchar(30),
-	cmnd int,
+	cmnd varchar(11),
 	Ten nvarchar(100),
 	DiaChi nvarchar(100),
-	SoDienThoai int,
-	NgaySinh datetime,
-	GioiTinh nvarchar(1)
+	SoDienThoai varchar(11),
+	NgaySinh varchar(10),
+	GioiTinh varchar(1)
 	primary key(MaKH)
 )
 go
