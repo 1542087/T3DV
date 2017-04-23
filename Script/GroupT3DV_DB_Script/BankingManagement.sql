@@ -27,7 +27,7 @@ create table KhachHang
 (
 	MaKH nvarchar(30),
 	cmnd varchar(11),
-	Ten nvarchar(100),
+	TenKH nvarchar(100),
 	DiaChi nvarchar(100),
 	SoDienThoai varchar(11),
 	NgaySinh varchar(10),
@@ -50,7 +50,7 @@ create table NhanVien
 	MaNV nvarchar(30),
 	cmnd int,
 	ChucVu nvarchar(10),
-	Ten nvarchar(50),
+	TenNV nvarchar(50),
 	CNTrucThuoc nvarchar(30),
 	NgayVaoCongTy datetime,
 	NgayRaCongTy datetime,
@@ -118,15 +118,13 @@ create table ChiTietGiaoDich
 	MaGD nvarchar(30),
 	MaKH nvarchar(30),
 	NgayGD datetime,
-	LoaiGD nvarchar(1),
 	MaNV nvarchar(30),
-	MaCN nvarchar(30),
+	MaCNNH nvarchar(30),
 	SoTienGD numeric(28,0),
 	NoiDungGD nvarchar(200),
 	TrangThai nvarchar(1),
-	NHGD nvarchar(30),
 	PhiGD int
-	primary key(MaGD)
+	primary key(NgayGD,MaKH)
 )
 go
 
@@ -154,18 +152,14 @@ alter table SoTietKiem
 alter table ChiNhanhNganHang
 	add constraint fk_CNNH_NH foreign key (LoaiNH) references NganHang (MaNH)
 
-alter table GiaoDich
-	add constraint fk_GD_KH foreign key (MaKH) references KhachHang (MaKH)
-
-alter table ChiTietGiaoDich
-	add constraint fk_CTGD_GD foreign key (MaGD) references GiaoDich (MaGD)
-
 alter table ChiTietGiaoDich
 	add constraint fk_CTGD_NV foreign key (MaNV) references NhanVien (MaNV)
 
 alter table ChiTietGiaoDich
-	add constraint fk_CTGD_CN foreign key (MaCN) references ChiNhanhNganHang (MaCN)
+	add constraint fk_CTGD_CN foreign key (MaCNNH) references ChiNhanhNganHang (MaCN)
 
 alter table ChiTietGiaoDich
-	add constraint fk_CTGD_NH foreign key (NHGD) references NganHang (MaNH)
+	add constraint fk_CTGD_KH foreign key (MaKH) references  KhachHang (MaKH)
 
+alter table ChiTietGiaoDich
+	add constraint fk_CTGD_GD foreign key (MaGD) references  GiaoDich (MaGD)
