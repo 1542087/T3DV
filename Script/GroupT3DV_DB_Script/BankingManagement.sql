@@ -123,7 +123,8 @@ create table ChiTietGiaoDich
 	SoTienGD numeric(28,0),
 	NoiDungGD nvarchar(200),
 	TrangThai nvarchar(1),
-	PhiGD int
+	PhiGD int,
+	MaTKNguoiNhan nvarchar(30)
 	primary key(NgayGD,MaKH)
 )
 go
