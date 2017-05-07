@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    [Table("MSTUSER", Schema = "dbo")]
     public partial class MSTUSER
     {
         [Key]

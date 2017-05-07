@@ -1,0 +1,243 @@
+﻿@model CreditManagement.Models.DealDetail
+
+@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Banking Management</title>
+    <link href="~/Script/css/giaodich.css" rel="stylesheet" />
+    <link href="~/Script/css/jquery-ui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="~/Script/js/jquery-1.12.4.js"></script>
+    <script src="~/Script/js/jquery-ui.js"></script>
+    <link href="~/Script/css/DataTableJS/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/Script/js/DataTableJS/jquery.dataTables.min.js"></script>
+    <script src="~/Script/js/giaodich.js"></script>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("mySelect").value;
+            if (x == "0") {
+                document.getElementById("phiGDChuyenTien").innerHTML = "1000"
+            } else {
+                document.getElementById("phiGDChuyenTien").innerHTML = "11000"
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+    @using (@Html.BeginForm())
+    {
+        <div style="text-align: right; color:white; ">
+            <b>
+                <label>Xin chào, </label><label id="tenKH">
+                    @Html.Label(@Model.TenKH, new { style = " border-radius: 15px 50px 30px 5px;height: 25px;" })
+                </label>
+            </b>
+        </div> <br />
+        <div id="tabs" style="height: 590px">
+            <ul>
+                <li><a href="#tabs-1"><b style="font-family: initial;">Chi Tiết Giao Dịch</b></a></li>
+                <li><a href="#tabs-2"><b style="font-family: initial;">Chuyển Tiền</b></a></li>
+                <li><a href="#tabs-3"><b style="font-family: initial;">Rút Tiền</b></a></li>
+            </ul>
+            <div id="tabs-1">
+                <table id="example" class="display" style="width: 100%; height: 300px;"></table>
+            </div>
+            <div id="tabs-2">
+                <div class="divTable">
+                    <div class="divTableBody">
+                        <div class="divTableRow">
+                            <div class="divTableCell" style="text-align: right;">Mã tài khoản</div>
+                            <div class="divTableCellCol2"></div>
+                            <div class="divTableCell">
+                                @Html.Label(@Model.ChuyenKhoanModel.MaTK,
+                                new { style = " border-radius: 15px 50px 30px 5px;height: 25px;" })
+                            </div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell" style="text-align: right;">Số dư tài khoản</div>
+                            <div class="divTableCellCol2"></div>
+                            <div class="divTableCell">
+                                @Html.Label(@Model.ChuyenKhoanModel.SoDuTK, 
+                                new { style = " border-radius: 15px 50px 30px 5px;height: 25px;" })
+                            </div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell" style="text-align: right;">Hinh thức chuyển</div>
+                            <div class="divTableCellCol2"></div>
+                            <div class="divTableCell">
+                                <select id="mySelect" onchange="myFunction()">
+                                    <option value="0">Cùng Ngân Hàng
+                                    <option value="1">Khác Ngân Hàng
+                                </select>
+                            </div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell" style="text-align: right;">Ngân hàng</div>
+                            <div class="divTableCellCol2"></div>
+                            <div class="divTableCell">
+                                @Html.DropDownList("SelectedId",
+                                new SelectList(Model.dsNganHang, "MaCN", "TenCN"))
+                            </div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell" style="text-align: right;">Tài khoản đến</div>
+                            <div class="divTableCellCol2"></div>
+                            <div class="divTableCell">
+                                @Html.TextBox("TaiKhoanDen", @Model.ChuyenKhoanModel.TaiKhoanDen,
+                                new { @type = "number", @id = "taikhoanden", @maxlength = "11", @class = "txtCanInput" })
+
+                            </div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell" style="text-align: right;">Số tiền</div>
+                            <div class="divTableCellCol2"></div>
+                            <div class="divTableCell">
+                                @Html.TextBox("SoTienCK", @Model.ChuyenKhoanModel.SoTien,
+                                new { @Value = "0", @type = "number", @id = "sotienchuyenkhoan", @maxlength = "10", @class = "txtCanInput" })
+
+                              
+                            </div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell" style="text-align: right;">Phí giao dịch</div>
+                            <div class="divTableCellCol2"></div>
+                            <div class="divTableCell">
+                                <label id="phiGDChuyenTien">1000</label> VND
+                            </div>
+                        </div>
+                        <div class="divTableRow" style="height: 50px">
+                            <div class="divTableCell" style="text-align: right; ">Nội dung</div>
+                            <div class="divTableCellCol2"></div>
+                            <div class="divTableCell">
+                                @Html.TextBox("NoiDungCK", @Model.ChuyenKhoanModel.NoiDung,
+                                new { @id = "noidungchuyenkhoan", @maxlength = "200", @class = "txtCanInputNoiDung" })
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="hot-container">
+                    <p>
+                        <a href="#" class="btn btn-blue" id="btnChuyenKhoan" onclick="SaveToDataBase('btnChuyenKhoan');">Chuyển ngay</a>
+                        <a href="#" class="btn btn-red" id="btnHuyChuyenKhoan" onclick="SaveToDataBase('btnHuyChuyenKhoan');">Hủy bỏ</a>
+                    </p>
+                </div>
+            </div>
+            <div id="tabs-3">
+                <div class="divTable">
+                    <div class="divTableBody">
+                        <div class="divTableRow">
+                            <div class="divTableCell" style="text-align: right;">Mã tài khoản</div>
+                            <div class="divTableCellCol2"></div>
+                            <div class="divTableCell">
+                                @Html.Label(@Model.RutTienModel.MaTK, 
+                                new { style = " border-radius: 15px 50px 30px 5px;height: 25px;" })
+                            </div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell" style="text-align: right;">Số dư tài khoản</div>
+                            <div class="divTableCellCol2"></div>
+                            <div class="divTableCell">
+                                @Html.Label(@Model.RutTienModel.SoDuTK, 
+                                new { style = " border-radius: 15px 50px 30px 5px;height: 25px;" })
+                            </div>
+                        </div>
+
+                        <div class="divTableRow">
+                            <div class="divTableCell" style="text-align: right;">Số tiền</div>
+                            <div class="divTableCellCol2"></div>
+                            <div class="divTableCell">
+                                @Html.TextBox("SoTien",@Model.RutTienModel.SoTien, 
+                                new {@Value = "0", @type="number" ,@id = "sotien", @maxlength = "10", @class = "txtCanInput"})
+                            </div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell" style="text-align: right;">Phí giao dịch</div>
+                            <div class="divTableCellCol2"></div>
+                            <div class="divTableCell">
+                                <label id="phiGDRutTien">1100 VND</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="hot-container">
+                    <p>
+                        <a href="#" class="btn btn-blue" id="btnRutTien" onclick="SaveToDataBase('btnRutTien');">rút tiền</a>
+                        <a href="#" class="btn btn-red" id="btnHuyRutTien" onclick="SaveToDataBase('btnHuyRutTien');">Hủy bỏ</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+    <script>
+        function SaveToDataBase(id) {
+            var soTien = "";
+            var sotk = "";
+          
+            if (id == "btnRutTien") {
+                soTien = document.getElementById("sotien").value;
+                if (soTien.trim() == "") {
+                    alert("Số tiền không thể rỗng.");
+                    document.getElementById("sotien").focus();
+                    return;
+                } else if (parseInt(soTien) <= 0) {
+                    alert("Số tiền phải lớn hơn 0.");
+                    document.getElementById("sotien").focus();
+                    return;
+                } else {
+
+                }
+            }
+
+            if (id == "btnHuyRutTien") {
+                document.getElementById("sotien").value = 0;
+            }
+
+            if (id == "btnChuyenKhoan") {
+                soTien = document.getElementById("sotienchuyenkhoan").value;
+                sotk = document.getElementById("taikhoanden").value;
+
+                if (sotk.trim() == "") {
+                    alert("Số tài khoản đến không thể rỗng.");
+                    document.getElementById("taikhoanden").focus();
+                    return;
+                } else if (soTien.trim() == "") {
+                    alert("Số tiền không thể rỗng.");
+                    document.getElementById("sotienchuyenkhoan").focus();
+                    return;
+                } else if (parseInt(soTien) <= 0) {
+                    alert("Số tiền phải lớn hơn 0.");
+                    document.getElementById("sotienchuyenkhoan").focus();
+                    return;
+                } else {
+                    var maNH = $('#SelectedId').val();
+                    var phiDV = document.getElementById("phiGDChuyenTien").innerHTML;
+                    var noidung = document.getElementById("noidungchuyenkhoan").value;
+
+                 
+                }
+            }
+
+            if (id == "btnHuyChuyenKhoan") {
+                document.getElementById("noidungchuyenkhoan").value = "";
+                document.getElementById("sotienchuyenkhoan").value = 0;
+                document.getElementById("taikhoanden").value = 0;
+            }
+
+        }
+    </script>
+</body>
+
+</html>

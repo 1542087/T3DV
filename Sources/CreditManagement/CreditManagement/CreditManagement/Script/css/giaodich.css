@@ -45,6 +45,11 @@
     border-style:outset;
     height: 25px;
 }
+.txtCanInputNoiDung{
+    border-style:outset;
+    height: 80px;
+    width: 360px;
+}
 
 /*BUTON OK/CANCEL _ START*/
 .hot-container p { margin-top: 10px; }

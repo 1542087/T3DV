@@ -13,6 +13,14 @@ namespace CreditManagement.Models
         {
         }
         public virtual DbSet<GiaoDich> GiaoDich { get; set; }
-        public virtual DbSet<ChiTietGiaoDich> CTGiaoDich { get; set; }
+        public virtual DbSet<ChiTietGiaoDich> ChiTietGiaoDich { get; set; }
+        public virtual DbSet<NhanVien> NhanVien { get; set; }
+        public virtual DbSet<KhachHang> KhachHang { get; set; }
+        public virtual DbSet<ChiNhanhNganHang> ChiNhanhNganHang { get; set; }
+        public virtual DbSet<TaiKhoan> TaiKhoan { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+        }
     }
 }

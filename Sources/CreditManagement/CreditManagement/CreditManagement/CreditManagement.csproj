@@ -92,8 +92,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Script\css\DataTableJS\jquery.dataTables.min.css" />
     <Content Include="Script\css\giaodich.css" />
     <Content Include="Script\css\jquery-ui.css" />
+    <Content Include="Script\js\DataTableJS\jquery.dataTables.min.js" />
     <Content Include="Script\js\giaodich.js" />
     <Content Include="Script\js\jquery-1.12.4.js" />
     <Content Include="Script\js\jquery-ui.js" />
@@ -101,13 +103,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\GiaoDichController.cs" />
+    <Compile Include="Controllers\DealDetailController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logic\CTGiaoDich.cs" />
     <Compile Include="Models\BankingContext.cs" />
     <Compile Include="Models\ChiNhanhNganHang.cs" />
     <Compile Include="Models\ChuyenKhoan.cs" />
+    <Compile Include="Models\DealDetail.cs" />
+    <Compile Include="Models\RutTien.cs" />
     <Compile Include="Models\NganHang.cs" />
     <Compile Include="Models\MSTUSER.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
@@ -121,7 +126,7 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Views\GiaoDich\Index.cshtml" />
+    <Content Include="Views\DealDetail\DealDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

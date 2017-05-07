@@ -5,7 +5,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-
+    [Table("GiaoDich", Schema = "dbo")]
     public partial class GiaoDich
     {
         public GiaoDich()

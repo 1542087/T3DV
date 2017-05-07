@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    [Table("ChiNhanhNganHang", Schema = "dbo")]
     public partial class ChiNhanhNganHang
     {
         public ChiNhanhNganHang()

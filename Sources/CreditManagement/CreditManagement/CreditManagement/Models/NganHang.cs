@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+
+    [Table("NganHang", Schema = "dbo")]
     public partial class NganHang
     {
         public NganHang()
