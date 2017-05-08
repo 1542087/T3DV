@@ -2,7 +2,6 @@
 
 @{
     Layout = null;
-
 }
 <!DOCTYPE html>
 <html>
@@ -29,10 +28,32 @@
             }
         }
 
+        $(function () {
+            $("#tabs").tabs();
+        });
+
+        @*$(document).ready(function () {
+            var dataSet = '@Model.ChiTietGD';
+          
+            $('#example').DataTable({
+                data: dataSet,
+                columns: [
+                    { title: "Mã Giao Dịch" },
+                    { title: "Ngày Giao Dịch" },
+                    { title: "Nhân Viên" },
+                    { title: "Chi Nhánh Giao Dịch" },
+                    { title: "Số tiền" }
+                ]
+            });
+        });*@
+
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
     </script>
 
 </head>
-<body>
+<body style="font-family: 'Times New Roman'; font-size: 16px">
     @using (@Html.BeginForm())
     {
         <div style="text-align: right; color:white; ">
@@ -42,14 +63,50 @@
                 </label>
             </b>
         </div> <br />
-        <div id="tabs" style="height: 590px">
+        <div id="tabs" style="height: 590px; width: 1024px;">
             <ul>
                 <li><a href="#tabs-1"><b style="font-family: initial;">Chi Tiết Giao Dịch</b></a></li>
                 <li><a href="#tabs-2"><b style="font-family: initial;">Chuyển Tiền</b></a></li>
                 <li><a href="#tabs-3"><b style="font-family: initial;">Rút Tiền</b></a></li>
             </ul>
             <div id="tabs-1">
-                <table id="example" class="display" style="width: 100%; height: 300px;"></table>
+                <table id="myTable" class="display" cellspacing="0" style="font-family: 'Times New Roman'; font-size: 16px;">
+                    <thead>
+                        <tr>
+                            <th>Mã Giao Dịch</th>
+                            <th>Ngày Giao Dịch</th>
+                            <th>Nhân Viên</th>
+                            <th>Chi Nhánh Giao Dịch</th>
+                            <th>Số tiền</th>
+                        </tr>
+                    </thead>
+                    @*<tfoot>
+                            <tr>
+                                <th>Mã Giao Dịch</th>
+                                <th>Ngày Giao Dịch</th>
+                                <th>Nhân Viên</th>
+                                <th>Chi Nhánh Giao Dịch</th>
+                                <th>Số tiền</th>
+                            </tr>
+                        </tfoot>*@
+                    <tbody>
+                        @if (Model.ChiTietGD != null)
+                        {
+
+                            foreach (var item in Model.ChiTietGD)
+                            {
+                                <tr>
+                                    <td>@item.MaGD</td>
+                                    <td>@item.NgayGD</td>
+                                    <td>@item.TenNV</td>
+                                    <td>@item.TenCN</td>
+                                    <td>@item.SoTienGD</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+
             </div>
             <div id="tabs-2">
                 <div class="divTable">
@@ -66,7 +123,7 @@
                             <div class="divTableCell" style="text-align: right;">Số dư tài khoản</div>
                             <div class="divTableCellCol2"></div>
                             <div class="divTableCell">
-                                @Html.Label(@Model.ChuyenKhoanModel.SoDuTK, 
+                                @Html.Label(@Model.ChuyenKhoanModel.SoDuTK,
                                 new { style = " border-radius: 15px 50px 30px 5px;height: 25px;" })
                             </div>
                         </div>
@@ -104,7 +161,7 @@
                                 @Html.TextBox("SoTienCK", @Model.ChuyenKhoanModel.SoTien,
                                 new { @Value = "0", @type = "number", @id = "sotienchuyenkhoan", @maxlength = "10", @class = "txtCanInput" })
 
-                              
+
                             </div>
                         </div>
                         <div class="divTableRow">
@@ -120,7 +177,7 @@
                             <div class="divTableCell">
                                 @Html.TextBox("NoiDungCK", @Model.ChuyenKhoanModel.NoiDung,
                                 new { @id = "noidungchuyenkhoan", @maxlength = "200", @class = "txtCanInputNoiDung" })
-                                
+
                             </div>
                         </div>
                     </div>
@@ -140,7 +197,7 @@
                             <div class="divTableCell" style="text-align: right;">Mã tài khoản</div>
                             <div class="divTableCellCol2"></div>
                             <div class="divTableCell">
-                                @Html.Label(@Model.RutTienModel.MaTK, 
+                                @Html.Label(@Model.RutTienModel.MaTK,
                                 new { style = " border-radius: 15px 50px 30px 5px;height: 25px;" })
                             </div>
                         </div>
@@ -148,7 +205,7 @@
                             <div class="divTableCell" style="text-align: right;">Số dư tài khoản</div>
                             <div class="divTableCellCol2"></div>
                             <div class="divTableCell">
-                                @Html.Label(@Model.RutTienModel.SoDuTK, 
+                                @Html.Label(@Model.RutTienModel.SoDuTK,
                                 new { style = " border-radius: 15px 50px 30px 5px;height: 25px;" })
                             </div>
                         </div>
@@ -157,8 +214,8 @@
                             <div class="divTableCell" style="text-align: right;">Số tiền</div>
                             <div class="divTableCellCol2"></div>
                             <div class="divTableCell">
-                                @Html.TextBox("SoTien",@Model.RutTienModel.SoTien, 
-                                new {@Value = "0", @type="number" ,@id = "sotien", @maxlength = "10", @class = "txtCanInput"})
+                                @Html.TextBox("SoTien", @Model.RutTienModel.SoTien,
+                                new { @Value = "0", @type = "number", @id = "sotien", @maxlength = "10", @class = "txtCanInput" })
                             </div>
                         </div>
                         <div class="divTableRow">
@@ -185,7 +242,7 @@
         function SaveToDataBase(id) {
             var soTien = "";
             var sotk = "";
-          
+
             if (id == "btnRutTien") {
                 soTien = document.getElementById("sotien").value;
                 if (soTien.trim() == "") {
@@ -226,7 +283,7 @@
                     var phiDV = document.getElementById("phiGDChuyenTien").innerHTML;
                     var noidung = document.getElementById("noidungchuyenkhoan").value;
 
-                 
+
                 }
             }
 
@@ -239,5 +296,7 @@
         }
     </script>
 </body>
+
+
 
 </html>

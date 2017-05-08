@@ -8,7 +8,7 @@ namespace CreditManagement.Models
 {
     public class DealDetail
     {
-        public DataSet ChiTietGD { get; set; }
+        public List<Tab01Model> ChiTietGD { get; set; }
 
         public RutTien RutTienModel { get; set; }
 

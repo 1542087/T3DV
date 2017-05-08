@@ -4,16 +4,19 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Web;
+using System.Web.Script.Serialization;
 
 namespace CreditManagement.Logic
 {
     public class CTGiaoDich
     {
-        public DataSet GetDealDetail()
+        public List<Tab01Model> GetDealDetail()
         {
-            DataSet ds = new DataSet();
+            string ds = "";
             BankingContext ct = new BankingContext();
+            List<Tab01Model> model = new List<Tab01Model>();
             var query = from ctgd in ct.ChiTietGiaoDich
                         join kh in ct.KhachHang on ctgd.MaKH equals kh.MaKH
                         join nv in ct.NhanVien on ctgd.MaNV equals nv.MaNV
@@ -30,10 +33,40 @@ namespace CreditManagement.Logic
 
             DataTable dt = LINQToDataTable(query);
 
-            ds.Tables.Add(dt);
+            model = (from rw in dt.AsEnumerable()
+                                 select new Tab01Model()
+                                 {
+                                     MaGD = rw["MaGD"].ToString(),
+                                     NgayGD = Convert.ToString(rw["NgayGD"]),
+                                     TenNV = Convert.ToString(rw["NhanVien"]),
+                                     TenCN = Convert.ToString(rw["CNGD"]),
+                                     SoTienGD = Convert.ToString(rw["SoTien"])
+                                 }).ToList();
 
-            return ds;
+            return model;
         }
+        public string GetJson(DataTable dt)
+        {
+            JavaScriptSerializer JSSerializer = new JavaScriptSerializer();
+            List<Dictionary<string, object>> DtRows =
+              new List<Dictionary<string, object>>();
+            Dictionary<string, object> newrow = null;
+
+            //Code to loop each row in the datatable and add it to the dictionary object
+            foreach (DataRow drow in dt.Rows)
+            {
+                newrow = new Dictionary<string, object>();
+                foreach (DataColumn col in dt.Columns)
+                {
+                    newrow.Add(col.ColumnName.Trim(), drow[col]);
+                }
+                DtRows.Add(newrow);
+            }
+
+            //Serialising the dictionary object to produce json output
+            return JSSerializer.Serialize(DtRows);
+        }
+       
 
         public DealDetail ShowDataToScreen()
         {

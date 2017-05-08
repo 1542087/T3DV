@@ -115,6 +115,7 @@
     <Compile Include="Models\RutTien.cs" />
     <Compile Include="Models\NganHang.cs" />
     <Compile Include="Models\MSTUSER.cs" />
+    <Compile Include="Models\Tab01Model.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Models\SoTietKiem.cs" />
     <Compile Include="Models\NhanVien.cs" />

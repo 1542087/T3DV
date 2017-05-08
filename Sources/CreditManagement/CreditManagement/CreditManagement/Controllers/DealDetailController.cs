@@ -32,8 +32,6 @@ namespace CreditManagement.Controllers
 
         public ActionResult DealDetail1(string soTien)
         {
-           // CTGiaoDich ctgd = new CTGiaoDich();
-            //model = ctgd.ShowDataToScreen();
             return RedirectToAction("DealDetail", "DealDetail");
         }
     }
