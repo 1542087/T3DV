@@ -32,21 +32,6 @@
             $("#tabs").tabs();
         });
 
-        @*$(document).ready(function () {
-            var dataSet = '@Model.ChiTietGD';
-          
-            $('#example').DataTable({
-                data: dataSet,
-                columns: [
-                    { title: "Mã Giao Dịch" },
-                    { title: "Ngày Giao Dịch" },
-                    { title: "Nhân Viên" },
-                    { title: "Chi Nhánh Giao Dịch" },
-                    { title: "Số tiền" }
-                ]
-            });
-        });*@
-
         $(document).ready(function () {
             $('#myTable').DataTable();
         });
@@ -254,7 +239,19 @@
                     document.getElementById("sotien").focus();
                     return;
                 } else {
-
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'json',
+                        url: '/DealDetail/RutTien',
+                        async: false,
+                        data: {
+                            SoTien: soTien,
+                        },
+                        success: function (response) {
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        }
+                    });
                 }
             }
 
@@ -283,6 +280,21 @@
                     var phiDV = document.getElementById("phiGDChuyenTien").innerHTML;
                     var noidung = document.getElementById("noidungchuyenkhoan").value;
 
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'json',
+                        url: '/DealDetail/ChuyenKhoan',
+                        async: false,
+                        data: {
+                            MaNH: maNH,
+                            PhiDV: phiDV,
+                            NoiDung: noidung
+                        },
+                        success: function (response) {
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        }
+                    });
 
                 }
             }

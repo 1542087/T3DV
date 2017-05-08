@@ -30,7 +30,12 @@ namespace CreditManagement.Controllers
             return View(model);
         }
 
-        public ActionResult DealDetail1(string soTien)
+        public ActionResult RutTien(string SoTien)
+        {
+            return RedirectToAction("DealDetail", "DealDetail");
+        }
+
+        public ActionResult ChuyenKhoan(string MaNH, string PhiDV, string NoiDung)
         {
             return RedirectToAction("DealDetail", "DealDetail");
         }
