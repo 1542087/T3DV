@@ -1,7 +1,7 @@
-
+<!--
 <center>
-<form name="f2" action="loginBean.jsp" onsubmit="return check();" autocomplete="on"><br>
- 	<table border="0" cellpadding="2" cellspacing="2" style="border:#000000 solid 2px; padding:5px; width: 391px">
+<form name="f2" action="loginserlet"><br>
+   	<table border="0" cellpadding="2" cellspacing="2" style="border:#000000 solid 2px; padding:5px; width: 391px">
 
 	   <tr>
               <th colspan="3" bgcolor="#000000" scope="col"><font color="#FFFFFF">Customer Login</font></th>
@@ -31,4 +31,12 @@
               <td colspan="3">Do you want to create a account? <a href="register.jsp">Click Here</a> </td>
         </tr>
 	</table>
+	
+	
 </form></center>
+-->
+<form action="loginserlet">
+	<b>Username:</b> <input type="text" name="username"/><br><br>
+    <b>Password: </b>&nbsp;<input type="password" name="password"/><br><br>
+  	<button type="submit" class="btn-link"> Login </button>
+</form>
