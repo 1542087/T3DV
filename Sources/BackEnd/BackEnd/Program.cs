@@ -11,17 +11,17 @@ namespace BackEnd
     {
         static void Main(string[] args)
         {
-            using (var context = new BankingContext())
-            {
-                var tk = context.TaiKhoan
-                                .Where(b => b.MaKH == "KH0001")
-                                .FirstOrDefault();
+            //using (var context = new BankingContext())
+            //{
+            //    var tk = context.TaiKhoan
+            //                    .Where(b => b.MaKH == "KH0001")
+            //                    .FirstOrDefault();
 
-                var gd = context.GiaoDich
-                                .Where(b => b.MaKH == "KH0001")
-                                .FirstOrDefault();
+            //    var gd = context.GiaoDich
+            //                    .Where(b => b.MaKH == "KH0001")
+            //                    .FirstOrDefault();
 
-            }
+            //}
         }
     }
 }
