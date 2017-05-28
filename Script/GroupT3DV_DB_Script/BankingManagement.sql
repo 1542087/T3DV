@@ -129,6 +129,7 @@ create table ChiTietGiaoDich
 )
 go
 
+
 alter table NhanVien
 	add constraint fk_CN_NV foreign key (CNTrucThuoc) references ChiNhanhNganHang (MaCN)
 

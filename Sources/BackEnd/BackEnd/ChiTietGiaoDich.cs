@@ -26,6 +26,7 @@
         public string NoiDungGD { get; set; }
         public string TrangThai { get; set; }
         public Nullable<int> PhiGD { get; set; }
+        public string MaTKNguoiNhan { get; set; }
 
         public virtual ChiNhanhNganHang ChiNhanhNganHang { get; set; }
         public virtual NhanVien NhanVien { get; set; }
