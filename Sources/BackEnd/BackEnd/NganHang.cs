@@ -11,7 +11,7 @@
         public NganHang()
         {
             this.ChiNhanhNganHang = new HashSet<ChiNhanhNganHang>();
-            this.ChiTietGiaoDiche = new HashSet<ChiTietGiaoDich>();
+            this.ChiTietGiaoDich = new HashSet<ChiTietGiaoDich>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -20,6 +20,6 @@
         public string LoaiNH { get; set; }
 
         public virtual ICollection<ChiNhanhNganHang> ChiNhanhNganHang { get; set; }
-        public virtual ICollection<ChiTietGiaoDich> ChiTietGiaoDiche { get; set; }
+        public virtual ICollection<ChiTietGiaoDich> ChiTietGiaoDich { get; set; }
     }
 }

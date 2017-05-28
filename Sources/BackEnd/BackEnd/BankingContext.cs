@@ -25,5 +25,14 @@ namespace CreditManagement.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }
+        public NganHang LayTTNganHangTemp()
+        {
+            NganHang nh = new NganHang();
+            nh.MaNH = "NH0001";
+            nh.TenNH = "Asia Commercial Joint Stock Bank";
+            nh.LoaiNH = "ACB";
+            return nh;
+
+        }
     }
 }
