@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 using CreditManagement.Models;
 namespace ResAPI
 {
-    class GiaoDichLogic
+    class SoTietKiemLogic
     {
-        public List<GiaoDich> SearchAllDeal()
+        public List<SoTietKiem> SearchAllSaveMoney()
         {
-            List<GiaoDich> lst = new List<GiaoDich>();
+            List<SoTietKiem> lst = new List<SoTietKiem>();
             try
             {
 
                 using (var context = new BankingContext())
                 {
-                    lst = context.GiaoDich.ToList();
+                    lst = context.SoTietKiem.ToList();
                 }
 
                 return lst;
@@ -27,20 +27,20 @@ namespace ResAPI
             }
         }
 
-        public List<GiaoDich> SearchDealDetailByCondition(GiaoDich sc)
+        public List<SoTietKiem> SearchSaveMoneyByCondition(SoTietKiem sc)
         {
-            List<GiaoDich> lst = new List<GiaoDich>();
+            List<SoTietKiem> lst = new List<SoTietKiem>();
             try
             {
                 var ctx = new BankingContext();
-                var query = from ct in ctx.GiaoDich
+                var query = from ct in ctx.SoTietKiem
                             select ct;
 
                 if (sc != null)
                 {
-                    if (sc.MaGD != null)
+                    if (sc.MaSTK != null)
                     {
-                        query = query.Where(p => p.MaGD.Equals(sc.MaGD));
+                        query = query.Where(p => p.MaSTK.Equals(sc.MaSTK));
                     }
 
                     if (sc.MaKH != null)
@@ -48,14 +48,30 @@ namespace ResAPI
                         query = query.Where(p => p.MaKH.Equals(sc.MaKH));
                     }
 
+                    if (sc.NgayTao != null)
+                    {
+                        query = query.Where(p => p.NgayTao.Equals(sc.NgayTao));
+                    }
+                    if (sc.NgayHuy != null)
+                    {
+                        query = query.Where(p => p.NgayHuy.Equals(sc.NgayHuy));
+                    }
+                    if (sc.MaNV != null)
+                    {
+                        query = query.Where(p => p.MaNV.Equals(sc.MaNV));
+                    }
+                    if (sc.MaCN != null)
+                    {
+                        query = query.Where(p => p.MaCN.Equals(sc.MaCN));
+                    }
+
+                    if (sc.LoaiTK != null)
+                    {
+                        query = query.Where(p => p.LoaiTK.Equals(sc.LoaiTK));
+                    }
                     if (sc.SoTien != null)
                     {
                         query = query.Where(p => p.SoTien.Equals(sc.SoTien));
-                    }
-
-                    if (sc.NgayCapNhat != null)
-                    {
-                        query = query.Where(p => p.NgayCapNhat.Equals(sc.NgayCapNhat));
                     }
 
                 }
@@ -69,12 +85,12 @@ namespace ResAPI
             }
         }
 
-        public void InsertDeal(GiaoDich objInsert)
+        public void InsertSaveMoney(SoTietKiem objInsert)
         {
             try
             {
                 var ctx = new BankingContext();
-                ctx.GiaoDich.Add(objInsert);
+                ctx.SoTietKiem.Add(objInsert);
                 ctx.SaveChanges();
             }
             catch (Exception ex)
@@ -84,7 +100,7 @@ namespace ResAPI
 
         }
 
-        public void UpdateDeal(GiaoDich objUpdate)
+        public void UpdateSaveMoney(SoTietKiem objUpdate)
         {
             try
             {
@@ -98,15 +114,17 @@ namespace ResAPI
             }
         }
 
-        public void DeleteDeal(List<string> lstID)
+        public void DeleteSaveMoney(List<SoTietKiem> lstID)
         {
             try
             {
                 var ctx = new BankingContext();
-                List<GiaoDich> lst = new List<GiaoDich>();
+                List<SoTietKiem> lst = new List<SoTietKiem>();
                 for (int i = 0; i < lstID.Count; i++)
                 {
-                    lst.Add(new GiaoDich { MaGD = lstID[i]});
+                    lst.Add(new SoTietKiem { MaKH = lstID[i].MaKH, 
+                                             MaNV = lstID[i].MaNV,
+                                             MaCN = lstID[i].MaCN});
                     ctx.Entry(lst[i]).State = System.Data.Entity.EntityState.Deleted;
                 }
                 ctx.SaveChanges();

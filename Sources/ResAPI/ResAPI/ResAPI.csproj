@@ -56,6 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GiaoDichLogic.cs" />
+    <Compile Include="CTGiaoDichLogic.cs" />
+    <Compile Include="ChiNhanhNHLogic.cs" />
     <Compile Include="KhachHangLogic.cs" />
     <Compile Include="NhanVienLogic.cs" />
     <Compile Include="Program.cs" />

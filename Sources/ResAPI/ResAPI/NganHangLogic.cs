@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 using CreditManagement.Models;
 namespace ResAPI
 {
-    class GiaoDichLogic
+    class NganHangLogic
     {
-        public List<GiaoDich> SearchAllDeal()
+        public List<NganHang> SearchAllBanking()
         {
-            List<GiaoDich> lst = new List<GiaoDich>();
+            List<NganHang> lst = new List<NganHang>();
             try
             {
 
                 using (var context = new BankingContext())
                 {
-                    lst = context.GiaoDich.ToList();
+                    lst = context.NganHang.ToList();
                 }
 
                 return lst;
@@ -27,37 +27,31 @@ namespace ResAPI
             }
         }
 
-        public List<GiaoDich> SearchDealDetailByCondition(GiaoDich sc)
+        public List<NganHang> SearchBankingByCondition(NganHang sc)
         {
-            List<GiaoDich> lst = new List<GiaoDich>();
+            List<NganHang> lst = new List<NganHang>();
             try
             {
                 var ctx = new BankingContext();
-                var query = from ct in ctx.GiaoDich
+                var query = from ct in ctx.NganHang
                             select ct;
 
                 if (sc != null)
                 {
-                    if (sc.MaGD != null)
+                    if (sc.MaNH != null)
                     {
-                        query = query.Where(p => p.MaGD.Equals(sc.MaGD));
+                        query = query.Where(p => p.MaNH.Equals(sc.MaNH));
                     }
 
-                    if (sc.MaKH != null)
+                    if (sc.TenNH != null)
                     {
-                        query = query.Where(p => p.MaKH.Equals(sc.MaKH));
+                        query = query.Where(p => p.TenNH.Contains(sc.TenNH));
                     }
 
-                    if (sc.SoTien != null)
+                    if (sc.LoaiNH != null)
                     {
-                        query = query.Where(p => p.SoTien.Equals(sc.SoTien));
+                        query = query.Where(p => p.LoaiNH.Equals(sc.LoaiNH));
                     }
-
-                    if (sc.NgayCapNhat != null)
-                    {
-                        query = query.Where(p => p.NgayCapNhat.Equals(sc.NgayCapNhat));
-                    }
-
                 }
 
                 lst = query.ToList();
@@ -69,12 +63,12 @@ namespace ResAPI
             }
         }
 
-        public void InsertDeal(GiaoDich objInsert)
+        public void InsertBanking(NganHang objInsert)
         {
             try
             {
                 var ctx = new BankingContext();
-                ctx.GiaoDich.Add(objInsert);
+                ctx.NganHang.Add(objInsert);
                 ctx.SaveChanges();
             }
             catch (Exception ex)
@@ -84,7 +78,7 @@ namespace ResAPI
 
         }
 
-        public void UpdateDeal(GiaoDich objUpdate)
+        public void UpdateBanking(NganHang objUpdate)
         {
             try
             {
@@ -98,15 +92,15 @@ namespace ResAPI
             }
         }
 
-        public void DeleteDeal(List<string> lstID)
+        public void DeleteBanking(List<string> lstID)
         {
             try
             {
                 var ctx = new BankingContext();
-                List<GiaoDich> lst = new List<GiaoDich>();
+                List<NganHang> lst = new List<NganHang>();
                 for (int i = 0; i < lstID.Count; i++)
                 {
-                    lst.Add(new GiaoDich { MaGD = lstID[i]});
+                    lst.Add(new NganHang { MaNH = lstID[i] });
                     ctx.Entry(lst[i]).State = System.Data.Entity.EntityState.Deleted;
                 }
                 ctx.SaveChanges();
