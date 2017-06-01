@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* CSS Document */
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
+.btn-squre {
+  width: 120px;
+  height: 80px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 40px;
+  background-color:#0F9;
+}
+.tcaptb{
+font-size:20;
+font-weight:bold;
+color:#F00;	
+}
+.heighfooter{
+    margin-top: 120px;
+    margin-bottom: 40px;
+    color: #F00;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+}
+.bodyimagemain{
+	background-image:url(../Images/background_main.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: left;
+}
+
+
