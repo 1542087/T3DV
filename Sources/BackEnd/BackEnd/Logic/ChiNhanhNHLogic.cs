@@ -8,7 +8,7 @@ namespace BackEnd
 {
     class ChiNhanhNHLogic
     {
-        public List<ChiNhanhNganHang> SearchAllBankBranches()
+        public ChiNhanhNganHang[] SearchAllBankBranches()
         {
             List<ChiNhanhNganHang> lst = new List<ChiNhanhNganHang>();
             try
@@ -19,7 +19,7 @@ namespace BackEnd
                     lst = context.ChiNhanhNganHang.ToList();
                 }
 
-                return lst;
+                return lst.ToArray();
             }
             catch (Exception ex)
             {
@@ -27,7 +27,7 @@ namespace BackEnd
             }
         }
 
-        public List<ChiNhanhNganHang> SearchBankBranchesByCondition(ChiNhanhNganHang sc)
+        public ChiNhanhNganHang[] SearchBankBranchesByCondition(ChiNhanhNganHang sc)
         {
             List<ChiNhanhNganHang> lst = new List<ChiNhanhNganHang>();
             try
@@ -70,7 +70,7 @@ namespace BackEnd
                 }
 
                 lst = query.ToList();
-                return lst;
+                return lst.ToArray();
             }
             catch (Exception ex)
             {

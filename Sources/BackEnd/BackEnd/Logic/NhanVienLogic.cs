@@ -9,7 +9,7 @@ namespace BackEnd
 {
     class NhanVienLogic
     {
-        public List<NhanVien> SearchAllStaff()
+        public NhanVien[] SearchAllStaff()
         {
             List<NhanVien> lstNhanVien = new List<NhanVien>();
             try
@@ -20,7 +20,7 @@ namespace BackEnd
                     lstNhanVien = context.NhanVien.ToList();
                 }
 
-                return lstNhanVien;
+                return lstNhanVien.ToArray();
             }
             catch (Exception ex)
             {
@@ -28,7 +28,7 @@ namespace BackEnd
             }
         }
 
-        public List<NhanVien> SearchStaffByCondition(NhanVien sc)
+        public NhanVien[] SearchStaffByCondition(NhanVien sc)
         {
             List<NhanVien> lstNhanVien = new List<NhanVien>();
             try
@@ -76,7 +76,7 @@ namespace BackEnd
                 }
 
                 lstNhanVien = query.ToList();
-                return lstNhanVien;
+                return lstNhanVien.ToArray();
             }
             catch (Exception ex)
             {

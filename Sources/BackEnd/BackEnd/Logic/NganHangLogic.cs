@@ -9,7 +9,7 @@ namespace BackEnd
 {
     class NganHangLogic
     {
-        public List<CreditManagement.Models.NganHang> SearchAllBanking()
+        public CreditManagement.Models.NganHang[] SearchAllBanking()
         {
             List<CreditManagement.Models.NganHang> lst = new List<CreditManagement.Models.NganHang>();
             try
@@ -20,7 +20,7 @@ namespace BackEnd
                    lst = context.NganHang.ToList();
                 }
 
-                return lst;
+                return lst.ToArray();
             }
             catch (Exception ex)
             {
@@ -28,7 +28,7 @@ namespace BackEnd
             }
         }
 
-        public List<CreditManagement.Models.NganHang> SearchBankingByCondition(CreditManagement.Models.NganHang sc)
+        public CreditManagement.Models.NganHang[] SearchBankingByCondition(CreditManagement.Models.NganHang sc)
         {
             List<CreditManagement.Models.NganHang> lst = new List<CreditManagement.Models.NganHang>();
             try
@@ -56,7 +56,7 @@ namespace BackEnd
                 }
 
                 lst = query.ToList();
-                return lst;
+                return lst.ToArray();
             }
             catch (Exception ex)
             {

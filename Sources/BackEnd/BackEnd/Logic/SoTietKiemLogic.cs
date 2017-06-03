@@ -8,7 +8,7 @@ namespace BackEnd
 {
     class SoTietKiemLogic
     {
-        public List<SoTietKiem> SearchAllSaveMoney()
+        public SoTietKiem[] SearchAllSaveMoney()
         {
             List<SoTietKiem> lst = new List<SoTietKiem>();
             try
@@ -19,7 +19,7 @@ namespace BackEnd
                     lst = context.SoTietKiem.ToList();
                 }
 
-                return lst;
+                return lst.ToArray();
             }
             catch (Exception ex)
             {
@@ -27,7 +27,7 @@ namespace BackEnd
             }
         }
 
-        public List<SoTietKiem> SearchSaveMoneyByCondition(SoTietKiem sc)
+        public SoTietKiem[] SearchSaveMoneyByCondition(SoTietKiem sc)
         {
             List<SoTietKiem> lst = new List<SoTietKiem>();
             try
@@ -77,7 +77,7 @@ namespace BackEnd
                 }
 
                 lst = query.ToList();
-                return lst;
+                return lst.ToArray();
             }
             catch (Exception ex)
             {

@@ -8,7 +8,7 @@ namespace BackEnd
 {
     class TaiKhoanLogic
     {
-        public List<TaiKhoan> SearchAllAccount()
+        public TaiKhoan[] SearchAllAccount()
         {
             List<TaiKhoan> lst = new List<TaiKhoan>();
             try
@@ -19,7 +19,7 @@ namespace BackEnd
                     lst = context.TaiKhoan.ToList();
                 }
 
-                return lst;
+                return lst.ToArray();
             }
             catch (Exception ex)
             {
@@ -27,7 +27,7 @@ namespace BackEnd
             }
         }
 
-        public List<TaiKhoan> SearchAccountByCondition(TaiKhoan sc)
+        public TaiKhoan[] SearchAccountByCondition(TaiKhoan sc)
         {
             List<TaiKhoan> lst = new List<TaiKhoan>();
             try
@@ -76,7 +76,7 @@ namespace BackEnd
                 }
 
                 lst = query.ToList();
-                return lst;
+                return lst.ToArray();
             }
             catch (Exception ex)
             {

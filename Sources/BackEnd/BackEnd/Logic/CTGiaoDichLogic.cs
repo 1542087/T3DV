@@ -8,7 +8,7 @@ namespace BackEnd
 {
     class CTGiaoDichLogic
     {
-        public List<ChiTietGiaoDich> SearchAllDealDetail()
+        public ChiTietGiaoDich[] SearchAllDealDetail()
         {
             List<ChiTietGiaoDich> lst = new List<ChiTietGiaoDich>();
             try
@@ -19,7 +19,7 @@ namespace BackEnd
                     lst = context.ChiTietGiaoDich.ToList();
                 }
 
-                return lst;
+                return lst.ToArray();
             }
             catch (Exception ex)
             {
@@ -27,7 +27,7 @@ namespace BackEnd
             }
         }
 
-        public List<ChiTietGiaoDich> SearchDealDetailByCondition(ChiTietGiaoDich sc)
+        public ChiTietGiaoDich[] SearchDealDetailByCondition(ChiTietGiaoDich sc)
         {
             List<ChiTietGiaoDich> lst = new List<ChiTietGiaoDich>();
             try
@@ -90,7 +90,7 @@ namespace BackEnd
                 }
 
                 lst = query.ToList();
-                return lst;
+                return lst.ToArray();
             }
             catch (Exception ex)
             {

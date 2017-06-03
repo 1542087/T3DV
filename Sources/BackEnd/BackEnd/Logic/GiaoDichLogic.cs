@@ -8,7 +8,7 @@ namespace ResAPI
 {
     class GiaoDichLogic
     {
-        public List<GiaoDich> SearchAllDeal()
+        public GiaoDich[] SearchAllDeal()
         {
             List<GiaoDich> lst = new List<GiaoDich>();
             try
@@ -19,7 +19,7 @@ namespace ResAPI
                     lst = context.GiaoDich.ToList();
                 }
 
-                return lst;
+                return lst.ToArray();
             }
             catch (Exception ex)
             {
@@ -27,7 +27,7 @@ namespace ResAPI
             }
         }
 
-        public List<GiaoDich> SearchDealDetailByCondition(GiaoDich sc)
+        public GiaoDich[] SearchDealDetailByCondition(GiaoDich sc)
         {
             List<GiaoDich> lst = new List<GiaoDich>();
             try
@@ -61,7 +61,7 @@ namespace ResAPI
                 }
 
                 lst = query.ToList();
-                return lst;
+                return lst.ToArray();
             }
             catch (Exception ex)
             {

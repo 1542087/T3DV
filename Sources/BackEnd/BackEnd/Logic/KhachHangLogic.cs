@@ -66,7 +66,7 @@ namespace BackEnd
             }
 
         }
-        public List<KhachHang> SearchAllCustomer()
+        public KhachHang[] SearchAllCustomer()
         {
             List<KhachHang> lstKhachHang = new List<KhachHang>();
             try
@@ -77,7 +77,7 @@ namespace BackEnd
                     lstKhachHang = context.KhachHang.ToList();
                 }
 
-                return lstKhachHang;
+                return lstKhachHang.ToArray();
             }
             catch (Exception ex)
             {
@@ -85,7 +85,7 @@ namespace BackEnd
             }
         }
 
-        public List<KhachHang> SearchCustomerByCondition(KhachHang sc)
+        public KhachHang[] SearchCustomerByCondition(KhachHang sc)
         {
             List<KhachHang> lstKhachhang = new List<KhachHang>();
             try
@@ -128,7 +128,7 @@ namespace BackEnd
                 }
 
                 lstKhachhang = query.ToList();
-                return lstKhachhang;
+                return lstKhachhang.ToArray();
             }
             catch (Exception ex)
             {
