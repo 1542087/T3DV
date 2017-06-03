@@ -56,10 +56,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RestAPILogic.cs" />
+    <Compile Include="TaiKhoanLogic.cs" />
+    <Compile Include="SoTietKiemLogic.cs" />
     <Compile Include="GiaoDichLogic.cs" />
     <Compile Include="CTGiaoDichLogic.cs" />
     <Compile Include="ChiNhanhNHLogic.cs" />
     <Compile Include="KhachHangLogic.cs" />
+    <Compile Include="NganHangLogic.cs" />
     <Compile Include="NhanVienLogic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

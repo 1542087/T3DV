@@ -13,9 +13,14 @@ namespace ResAPI
         static void Main(string[] args)
         {
             NhanVienLogic nv = new NhanVienLogic();
-            List<string> lst = new List<string>();
-            lst.Add("NV0099");
-            nv.DeleteStaff(lst);
+            NganHangLogic nh = new NganHangLogic();
+            List<NhanVien> lst = new List<NhanVien>();
+            List<NganHang> lstNH = new List<NganHang>();
+
+            ///lst.Add("NV0099");
+            lst = nv.SearchAllStaff();
+            lstNH = nh.SearchAllBanking();
+            string a = "";
             
         }
     }

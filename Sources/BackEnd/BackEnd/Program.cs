@@ -11,17 +11,12 @@ namespace BackEnd
     {
         static void Main(string[] args)
         {
-            //using (var context = new BankingContext())
-            //{
-            //    var tk = context.TaiKhoan
-            //                    .Where(b => b.MaKH == "KH0001")
-            //                    .FirstOrDefault();
-
-            //    var gd = context.GiaoDich
-            //                    .Where(b => b.MaKH == "KH0001")
-            //                    .FirstOrDefault();
-
-            //}
+            NhanVienLogic nv = new NhanVienLogic();
+            NganHangLogic nh = new NganHangLogic();
+            List<NhanVien> lst = new List<NhanVien>();
+            List<NganHang> lstNH = new List<NganHang>();
+            lst = nv.SearchAllStaff();
+            string a = "";
         }
     }
 }
