@@ -17,100 +17,64 @@
 <body>
     <form class="form-horizontal">
         <div class="form-group text-center" style="font-size: 20px; color:red; font-weight: bold; margin-left: 60px; ">
-            Tạo Thông Tin Nhân Viên
+            Tạo Chi Nhánh Ngân Hàng
         </div>
         <div class="form-group">
-          <label class="col-md-5 control-label" for="textinput">Mã Nhân Viên</label>  
+          <label class="col-md-5 control-label" for="textinput">Mã Chi Nhánh
+               <span class="asteriskField" style="color: red">*</span>
+          </label>  
           <div class="col-md-7">
-            <input id="textinput" name="textinput" class="form-control input-md" required="" type="text" value="NV0001" readonly="readonly">
+            <input id="textinput" name="textinput" class="form-control input-md" required="" type="text" value="CN0001">
           </div>
         </div>
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-5 control-label" for="textinput">CMND
+          <label class="col-md-5 control-label" for="textinput">Loại Chi Nhánh
                <span class="asteriskField" style="color: red">*</span>
           </label>  
           <div class="col-md-7">
-          <input id="textinput" name="textinput" class="form-control input-md" required="" type="text" value="" placeholder="CMND">
+          <input id="textinput" name="textinput" class="form-control input-md" required="" type="text" value="" placeholder="Loại chi nhánh">
           </div>
         </div>
         
         <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-5 control-label" for="textinput">Tên Nhân Viên
-               <span class="asteriskField" style="color: red">*</span>
-          </label>  
-          <div class="col-md-7">
-          <input id="textinput" name="textinput" class="form-control input-md" required="" type="text" placeholder="Tên Nhân Viên"> 
-          </div>
-        </div>
-        
-        <!-- Text input-->
-        <div class="form-group ">
-            <label class="col-md-5 control-label" for="date">
-             Ngày Sinh
-             <span class="asteriskField" style="color: red">*</span>
-            </label>
-            <div class="control-group col-md-7">
-                     <div class="controls input-append date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                         <input size="16" type="text" value="" readonly class="form-control input-md" >
-                         <span class="add-on"><i class="icon-remove"></i></span>
-                         <span class="add-on"><i class="icon-th"></i></span>
-                     </div>
-                         <input type="hidden" id="dtp_input2" value="" /><br/>
-             </div> 
-       </div>
-        
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-5 control-label" for="textinput">Chức Vụ</label>  
-          <div class="col-md-7">
-              <select class="form-control">
-                  <option>Giao Dịch Viên</option>
-                   <option>Trưởng Phòng</option>
-              </select>
-          </div>
-        </div>
-                
-         <!-- Text input-->
-       <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-5 control-label" for="textinput">Chi Nhánh</label>  
-          <div class="col-md-7">
-              <select class="form-control">
-                  <option>Nhánh 1</option>
-                   <option>Nhánh 2</option>
-              </select>
-          </div>
-        </div>   
-        
-       <!-- Text input-->
         <div class="form-group">
           <label class="col-md-5 control-label" for="textinput">Địa Chỉ
                <span class="asteriskField" style="color: red">*</span>
           </label>  
           <div class="col-md-7">
-              <textarea  id="textinput" name="textinput" class="form-control input-md" required="" type="text" placeholder="Địa Chỉ" style="resize: none"> </textarea>
+          <input id="textinput" name="textinput" class="form-control input-md" required="" type="text" placeholder="Địa chỉ"> 
           </div>
         </div>
-       
-       
-       <!-- Text input-->
+        
+        <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-5 control-label" for="textinput">Số Điện Thoại
+          <label class="col-md-5 control-label" for="textinput">Tên Chi Nhánh
+               <span class="asteriskField" style="color: red">*</span>
           </label>  
           <div class="col-md-7">
-          <input id="textinput" name="textinput" class="form-control input-md" required="" type="text" placeholder="Tên Nhân Viên"> 
+          <input id="textinput" name="textinput" class="form-control input-md" required="" type="text" placeholder="Tên chi nhánh"> 
           </div>
         </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-5 control-label" for="textinput">ĐT(nội bộ)
+               <span class="asteriskField" style="color: red">*</span>
+          </label>  
+          <div class="col-md-7">
+          <input id="textinput" name="textinput" class="form-control input-md" required="" type="text" placeholder="số điện thoại(nội bộ)"> 
+          </div>
+        </div>
+        
        
               
         <div class="form-group">
          <div class="col-md-2 col-md-offset-6">
           <input name="_honey" style="display:none" type="text"/>
           <button class="btn btn-primary " name="submit" type="submit">
-           Register
+           Register Branch
           </button>
          </div>
           
