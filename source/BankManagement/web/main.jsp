@@ -48,26 +48,50 @@
       <div class="col-md-12 panel-default">
        <!-- icon danh sach khach hang-->
           <div class="col-md-2 col-md-offset-1">
-              <button name="themKH" id="themKH" type="button" class="btn btn-info btn-circle btn-xl"  style="padding:0px">
+              <button name="themKH" id="themTK" name="themTK" type="button" class="btn btn-info btn-circle btn-xl"  style="padding:0px">
                   <img src="Images/custom_list.jpg" width="60px" height="60px" class="img-circle text-center"/>
               </button>
-          	<span class="text-center"><br />Khách Hàng</span>
+              <script type="text/javascript">
+                    $('#themTK').click(function (){
+                          $('#createTK').load('TaiKhoan.html'); 
+                    });     
+            </script>
+          	<span class="text-center"><br />Tài Khoản</span>
           </div> <!-- icon danh sach khach hang-->
+          
           <!-- icon them khach hang-->
-          <div class="col-md-3 col-md-offset-0">
-              <button type="button" class="btn btn-info btn-circle btn-xl" data-title="Add" data-toggle="modal" data-target="#add" style="padding:0px; margin-left:20px">
+          <div class="col-md-2 col-md-offset-0">
+              <button  type="button" id="themKH" class="btn btn-info btn-circle btn-xl" data-title="Add" data-toggle="modal" data-target="#add" style="padding:0px; margin-left:20px">
                 <img src="Images/customer_add.jpg" width="60px" height="60px" class="img-circle text-center"/>
               </button>
           	<span class="text-center"><br>Thêm Khách Hàng</span>
           </div> <!-- icon them khach hang-->
+          
+          <!-- icon them khach hang-->
+          <div class="col-md-2 col-md-offset-0">
+              <button  id="dsKH" type="button" id="dsKH" class="btn btn-info btn-circle btn-xl" style="padding:0px; margin-left:30px">
+                <img src="Images/customer_add.jpg" width="60px" height="60px" class="img-circle text-center"/>
+              </button>
+          	<span class="text-center"><br>DS Khách Hàng</span>
+          </div> <!-- icon them khach hang-->
+            <script type="text/javascript">
+                    $('#dsKH').click(function (){
+                          $('#createTK').load("DSKhachHang.jsp"); 
+                    });     
+            </script>
       </div>
  </div><!-- header-->
  <div class="row col-md-9"><!-- row content-->
     <!-- content-->
-      <div class="col-md-9 col-sm-9 col-lg-9 col-md-offset-0 panel-default">
-
-            <jsp:include page="DSKhachHang.jsp"></jsp:include>
-
+    <div class="col-md-9 col-sm-9 col-lg-9 col-md-offset-0 panel-default" id="containscreen">
+        <div id="createTK" style="margin-top: 30px;">
+            
+            
+            <!-- noi dung contain--> 
+             <jsp:include page="Them_KH.jsp"></jsp:include>
+            
+            
+        </div>
       </div> <!-- content-->
  </div> <!-- row content-->
  <div class="row"><!-- row right-->
@@ -112,6 +136,5 @@
             Design by @T3DV
         </div>
  </div><!-- footer-->
-
 </body>
 </html>

@@ -17,10 +17,10 @@
     <form accept-charset="ISO-8859-1" action="ThaydoiTT_KH">
 <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
     <div class="modal-dialog">
-    <div class="modal-content">
+        <div class="modal-content">
           <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">Thay đổi Thông Tin</h4>
+        <h4 class="modal-title custom_align" id="Heading">Thêm Thông Tin Khách Hàng</h4>
         </div>
           <div class="modal-body">
         <div class="form-group">
@@ -31,6 +31,22 @@
             <div class="form-group">
             <input class="form-control " type="text" placeholder="Tên Khách Hàng" id="tenKH" name="tenKH">
         </div>
+            <b>Giới Tính</b>
+            <div class="form-group">
+                <select class="form-control">
+                    <option>Nam</option>
+                    <option>Nữ</option>
+                </select>
+            </div>
+        <b>Ngày Sinh</b>
+        <div class="control-group">
+                <div class="controls input-append date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input size="16" type="text" value="" readonly>
+                    <span class="add-on"><i class="icon-remove"></i></span>
+                    <span class="add-on"><i class="icon-th"></i></span>
+                </div>
+                    <input type="hidden" id="dtp_input2" value="" /><br/>
+        </div>
             <b>Địa Chỉ</b>
         <div class="form-group">
             <textarea rows="2" class="form-control" placeholder=" Địa Chỉ" id="diaChi" name="diaChi" ></textarea>
@@ -40,16 +56,13 @@
         <div class="form-group">
         <input class="form-control " type="text" placeholder="Số Điện Thoại" id="soDT" name="soDT">
         </div>
-        <b>Ngày Sinh</b>
-        <div class="form-group">
-        <input class="form-control " type="text" placeholder=" Ngày Sinh" id="ngaySinh" name="ngaySinh"> 
-        </div>
+
         </div>
         
           <div class="modal-footer ">
-        <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
+        <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-pencil"></span> Update</button>
       </div>
-        </div>
+      </div>
     <!-- /.modal-content --> 
   </div>
       <!-- /.modal-dialog --> 

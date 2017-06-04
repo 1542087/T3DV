@@ -11,11 +11,20 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Bank Management</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<script type="text/javascript">
+    $(".form_datetime").datetimepicker({
+        format: "dd MM yyyy - HH:ii P",
+        showMeridian: true,
+        autoclose: true,
+        todayBtn: true
+    });
+ </script> 
 </head>
 <body>
     <form accept-charset="ISO-8859-1" action="ThaydoiTT_KH">
-<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
+    <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
           <div class="modal-header">
@@ -31,6 +40,22 @@
             <div class="form-group">
             <input class="form-control " type="text" placeholder="Tên Khách Hàng" id="tenKH" name="tenKH">
         </div>
+            <b>Giới Tính</b>
+            <div class="form-group">
+                <select class="form-control">
+                    <option>Nam</option>
+                    <option>Nữ</option>
+                </select>
+            </div>
+        <b>Ngày Sinh</b>
+        <div class="control-group">
+                <div class="controls input-append date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input size="16" type="text" value="" readonly>
+                    <span class="add-on"><i class="icon-remove"></i></span>
+                    <span class="add-on"><i class="icon-th"></i></span>
+                </div>
+                    <input type="hidden" id="dtp_input2" value="" /><br/>
+        </div>
             <b>Địa Chỉ</b>
         <div class="form-group">
             <textarea rows="2" class="form-control" placeholder=" Địa Chỉ" id="diaChi" name="diaChi" ></textarea>
@@ -40,10 +65,7 @@
         <div class="form-group">
         <input class="form-control " type="text" placeholder="Số Điện Thoại" id="soDT" name="soDT">
         </div>
-        <b>Ngày Sinh</b>
-        <div class="form-group">
-        <input class="form-control " type="text" placeholder=" Ngày Sinh" id="ngaySinh" name="ngaySinh"> 
-        </div>
+
         </div>
         
           <div class="modal-footer ">
@@ -60,5 +82,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript">
+	$('.form_date').datetimepicker({
+        language:  'uk',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+</script>
 </body>
 </html>

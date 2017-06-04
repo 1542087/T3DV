@@ -109,7 +109,7 @@
     </table> 
    
     <jsp:include page="ThaydoiTT_KH.jsp"></jsp:include>
-    <jsp:include page="Them_KH.jsp"></jsp:include>
+   
     <jsp:include page="Xoa_KH.jsp"></jsp:include>
 </html>
 
