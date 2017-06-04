@@ -10,6 +10,11 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <display-name>15hcb2.t3dv</display-name>
+  <listener>
+	<listener-class>
+	hcb.t3dv.App	
+	</listener-class>
+  </listener>
   <servlet>
     <servlet-name>Jersey REST Service</servlet-name>
     <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
@@ -22,6 +27,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Jersey REST Service</servlet-name>
-    <url-pattern>/rest/*</url-pattern>
+    <url-pattern>/api/*</url-pattern>
   </servlet-mapping>
 </web-app>
