@@ -1,12 +1,16 @@
 package hcb.t3dv.pojo;
 
+import hcb.t3dv.dao.ModelCustomer;
+
 public class Customer {
-	private String id;
-	private String accountID;
-	private String name;
-	private String phone;
-	private String address;
-	private String birthday;
+	protected String id;
+	protected String accountID;
+	protected String personalID;
+	protected String name;
+	protected String phone;
+	protected String address;
+	protected String birthday;
+	protected Float balance;
 	
 	public String getId() {
 		return id;
@@ -19,6 +23,12 @@ public class Customer {
 	}
 	public void setAccountID(String accountID) {
 		this.accountID = accountID;
+	}
+	public String getPersonalID() {
+		return personalID;
+	}
+	public void setPersonalID(String personalID) {
+		this.personalID = personalID;
 	}
 	public String getName() {
 		return name;
@@ -43,5 +53,25 @@ public class Customer {
 	}
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
+	}
+	public Float getBalance() {
+		return balance;
+	}
+	public void setBalance(Float balance) {
+		this.balance = balance;
+	}
+	
+	public ModelCustomer toModel(Staff staff) {
+		ModelCustomer mCustomer = new ModelCustomer();
+		mCustomer.id = id;
+		mCustomer.accountID = accountID;
+		mCustomer.personalID = personalID;
+		mCustomer.name = name;
+		mCustomer.phone = phone;
+		mCustomer.address = address;
+		mCustomer.birthday = birthday;
+		mCustomer.balance = balance;
+		mCustomer.setStaff(staff);
+		return mCustomer;
 	}
 }

@@ -1,8 +1,8 @@
 package hcb.t3dv.bus;
 
-import hcb.t3dv.IGenericDataRepository;
+import hcb.t3dv.IGenericRepository.ISpecification;
 
-public class TodoSpecification implements IGenericDataRepository.Specification {
+public class TodoSpecification implements ISpecification {
 	private final String id;
 
 	private TodoSpecification(String id) {

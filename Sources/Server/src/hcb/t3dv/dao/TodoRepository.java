@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hcb.t3dv.App;
-import hcb.t3dv.IGenericDataRepository;
+import hcb.t3dv.IGenericRepository;
 import hcb.t3dv.bus.TodoSpecification;
 import hcb.t3dv.pojo.Todo;
 
-public class TodoRepository implements IGenericDataRepository<Todo> {
+public class TodoRepository implements IGenericRepository<Todo> {
 
 	@Override
 	public List<Todo> getAll() {
@@ -16,12 +16,12 @@ public class TodoRepository implements IGenericDataRepository<Todo> {
 	}
 
 	@Override
-	public List<Todo> getList(IGenericDataRepository.Specification spec) {
+	public List<Todo> getList(IGenericRepository.ISpecification spec) {
 		return null;
 	}
 
 	@Override
-	public Todo getSingle(IGenericDataRepository.Specification spec) {
+	public Todo getSingle(IGenericRepository.ISpecification spec) {
 		TodoSpecification todoSpec = (TodoSpecification) spec;
 		for(Todo todo : App.mData) {
 			if(todo.getId().equals(todoSpec.id())) return todo;
@@ -36,11 +36,9 @@ public class TodoRepository implements IGenericDataRepository<Todo> {
 
 	@Override
 	public void update(Todo item) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void remove(Todo item) {
-		// TODO Auto-generated method stub	
 	}
 }

@@ -27,19 +27,16 @@ public class TodoBusiness implements IBusinessLayer.ITodoBusiness {
 
 	@Override
 	public void addTodo(Todo todo) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void updateTodo(Todo todo) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void removeTodo(Todo todo) {
-		// TODO Auto-generated method stub
 		
 	}
 }

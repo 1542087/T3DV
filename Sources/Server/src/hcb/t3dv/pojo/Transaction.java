@@ -1,10 +1,14 @@
 package hcb.t3dv.pojo;
 
+import hcb.t3dv.dao.ModelCustomer;
+import hcb.t3dv.dao.ModelTransaction;
+
 public class Transaction {
-	private String transactionID;
-	private String date;
-	private float balance;
-	private float amount;
+	protected String transactionID;
+	protected String date;
+	protected float balance;
+	protected float amount;
+	
 	public String getTransactionID() {
 		return transactionID;
 	}
@@ -28,5 +32,16 @@ public class Transaction {
 	}
 	public void setAmount(float amount) {
 		this.amount = amount;
+	}
+	
+	public ModelTransaction toModel(Staff staff, Customer customer) {
+		ModelTransaction mTransaction = new ModelTransaction();
+		mTransaction.transactionID = transactionID;
+		mTransaction.date = date;
+		mTransaction.balance = balance;
+		mTransaction.amount = amount;
+		ModelCustomer mCustomer = customer.toModel(staff);
+		mTransaction.setCustomer(mCustomer);
+		return mTransaction;
 	}
 }
