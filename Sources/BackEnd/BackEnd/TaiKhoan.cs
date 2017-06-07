@@ -1,6 +1,5 @@
 ﻿namespace CreditManagement.Models
 {
-
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -22,6 +21,7 @@
           [ForeignKey("ChiNhanhNganHang")]
         public string MaCN { get; set; }
         public string ChuThich { get; set; }
+        public decimal SoDu { get; set; }
 
         public virtual ChiNhanhNganHang ChiNhanhNganHang { get; set; }
         public virtual KhachHang KhachHang { get; set; }

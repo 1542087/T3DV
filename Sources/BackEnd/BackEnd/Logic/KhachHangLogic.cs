@@ -2,49 +2,61 @@
 using System.Collections.Generic;
 using System.Linq;
 using CreditManagement.Models;
+using BackEnd.Logic;
 
 namespace BackEnd
 {
     class KhachHangLogic
     {
-        public bool InsertCustomer(KhachHang customer)
+        ReturnObjValueBackEnd  retObjValueBackEnd = new ReturnObjValueBackEnd();
+        public ReturnObjValueBackEnd InsertCustomer(KhachHang customer)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
             try
             {
                 using (var context = new BankingContext())
                 {
                     context.KhachHang.Add(customer);
                     context.SaveChanges();
-                    return true;
+                    retObjValueBackEnd.Success = true;
+                    return retObjValueBackEnd;
                 }
             }
             catch(Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public bool UpdateCustomer(KhachHang customer)
+        public ReturnObjValueBackEnd UpdateCustomer(KhachHang customer)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
+
             try
             {
                 using (var context = new BankingContext())
                 {
                     context.Entry(customer).State = System.Data.Entity.EntityState.Modified;
                     context.SaveChanges();
-                    return true;
+                    retObjValueBackEnd.Success = true;
+                    return retObjValueBackEnd;
                 }
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public bool DeleteCustomer(List<string> lstKH)
+        public ReturnObjValueBackEnd DeleteCustomer(List<string> lstKH)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
             try
             {
                 var ctx = new BankingContext();
@@ -55,16 +67,19 @@ namespace BackEnd
                     ctx.Entry(lstKhachHang[i]).State = System.Data.Entity.EntityState.Deleted;
                 }
                 ctx.SaveChanges();
-                return true;
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
 
         }
-        public KhachHang[] SearchAllCustomer()
+        public ReturnObjValueBackEnd SearchAllCustomer()
         {
             List<KhachHang> lstKhachHang = new List<KhachHang>();
             try
@@ -75,17 +90,24 @@ namespace BackEnd
                     lstKhachHang = context.KhachHang.ToList();
                 }
 
-                return lstKhachHang.ToArray();
+                retObjValueBackEnd.Success = true;
+                retObjValueBackEnd.Data = lstKhachHang.ToArray();
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public KhachHang[] SearchCustomerByCondition(KhachHang sc)
+        public ReturnObjValueBackEnd SearchCustomerByCondition(KhachHang sc)
         {
             List<KhachHang> lstKhachhang = new List<KhachHang>();
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
+
             try
             {
                 var ctx = new BankingContext();
@@ -126,10 +148,15 @@ namespace BackEnd
                 }
 
                 lstKhachhang = query.ToList();
-                return lstKhachhang.ToArray();
+                retObjValueBackEnd.Success = true;
+                retObjValueBackEnd.Data = lstKhachhang.ToArray();
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }

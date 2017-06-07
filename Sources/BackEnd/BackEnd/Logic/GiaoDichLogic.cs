@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using CreditManagement.Models;
+using BackEnd.Logic;
 namespace BackEnd
 {
     class GiaoDichLogic
     {
-        public GiaoDich[] SearchAllDeal()
+        ReturnObjValueBackEnd retObjValueBackEnd = new ReturnObjValueBackEnd();
+
+        public ReturnObjValueBackEnd SearchAllDeal()
         {
             List<GiaoDich> lst = new List<GiaoDich>();
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
             try
             {
 
@@ -17,17 +21,24 @@ namespace BackEnd
                     lst = context.GiaoDich.ToList();
                 }
 
-                return lst.ToArray();
+                retObjValueBackEnd.Success = true;
+                retObjValueBackEnd.Data = lst.ToArray();
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public GiaoDich[] SearchDealDetailByCondition(GiaoDich sc)
+        public ReturnObjValueBackEnd SearchDealDetailByCondition(GiaoDich sc)
         {
             List<GiaoDich> lst = new List<GiaoDich>();
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
+
             try
             {
                 var ctx = new BankingContext();
@@ -59,49 +70,63 @@ namespace BackEnd
                 }
 
                 lst = query.ToList();
-                return lst.ToArray();
+                retObjValueBackEnd.Success = true;
+                retObjValueBackEnd.Data = lst.ToArray();
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public bool InsertDeal(GiaoDich objInsert)
+        public ReturnObjValueBackEnd InsertDeal(GiaoDich objInsert)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
             try
             {
                 var ctx = new BankingContext();
                 ctx.GiaoDich.Add(objInsert);
                 ctx.SaveChanges();
-                return true;
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
-
         }
 
-        public bool UpdateDeal(GiaoDich objUpdate)
+        public ReturnObjValueBackEnd UpdateDeal(GiaoDich objUpdate)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
             try
             {
                 var ctx = new BankingContext();
                 ctx.Entry(objUpdate).State = System.Data.Entity.EntityState.Modified;
                 ctx.SaveChanges();
-                return true; 
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public bool DeleteDeal(List<string> lstID)
+        public ReturnObjValueBackEnd DeleteDeal(List<string> lstID)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
+
             try
             {
                 var ctx = new BankingContext();
@@ -112,14 +137,16 @@ namespace BackEnd
                     ctx.Entry(lst[i]).State = System.Data.Entity.EntityState.Deleted;
                 }
                 ctx.SaveChanges();
-                return true;
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
-
         }
     }
 }

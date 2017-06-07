@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using CreditManagement.Models;
+using BackEnd.Logic;
 namespace BackEnd
 {
     class ChiNhanhNHLogic
     {
-        public ChiNhanhNganHang[] SearchAllBankBranches()
+        ReturnObjValueBackEnd retObjValueBackEnd = new ReturnObjValueBackEnd();
+        public ReturnObjValueBackEnd SearchAllBankBranches()
         {
             List<ChiNhanhNganHang> lst = new List<ChiNhanhNganHang>();
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
+
             try
             {
 
@@ -17,17 +21,24 @@ namespace BackEnd
                     lst = context.ChiNhanhNganHang.ToList();
                 }
 
-                return lst.ToArray();
+                retObjValueBackEnd.Success = true;
+                retObjValueBackEnd.Data = lst.ToArray();
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public ChiNhanhNganHang[] SearchBankBranchesByCondition(ChiNhanhNganHang sc)
+        public ReturnObjValueBackEnd SearchBankBranchesByCondition(ChiNhanhNganHang sc)
         {
             List<ChiNhanhNganHang> lst = new List<ChiNhanhNganHang>();
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
+
             try
             {
                 var ctx = new BankingContext();
@@ -68,49 +79,65 @@ namespace BackEnd
                 }
 
                 lst = query.ToList();
-                return lst.ToArray();
+                retObjValueBackEnd.Success = true;
+                retObjValueBackEnd.Data = lst.ToArray();
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public bool InsertBankBranches(ChiNhanhNganHang objInsert)
+        public ReturnObjValueBackEnd InsertBankBranches(ChiNhanhNganHang objInsert)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
+
             try
             {
                 var ctx = new BankingContext();
                 ctx.ChiNhanhNganHang.Add(objInsert);
                 ctx.SaveChanges();
-                return true;
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
-            }
-
+            } 
         }
 
-        public bool UpdateBankBranches(ChiNhanhNganHang objUpdate)
+        public ReturnObjValueBackEnd UpdateBankBranches(ChiNhanhNganHang objUpdate)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
+
             try
             {
                 var ctx = new BankingContext();
                 ctx.Entry(objUpdate).State = System.Data.Entity.EntityState.Modified;
                 ctx.SaveChanges();
-                return true;
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public bool DeleteBankBranches(List<string> lstID)
+        public ReturnObjValueBackEnd DeleteBankBranches(List<string> lstID)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
+
             try
             {
                 var ctx = new BankingContext();
@@ -121,11 +148,14 @@ namespace BackEnd
                     ctx.Entry(lst[i]).State = System.Data.Entity.EntityState.Deleted;
                 }
                 ctx.SaveChanges();
-                return true;
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
 

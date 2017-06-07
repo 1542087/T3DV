@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using CreditManagement.Models;
+using BackEnd.Logic;
 namespace BackEnd
 {
     class SoTietKiemLogic
     {
-        public SoTietKiem[] SearchAllSaveMoney()
+        ReturnObjValueBackEnd retObjValueBackEnd = new ReturnObjValueBackEnd();
+        public ReturnObjValueBackEnd SearchAllSaveMoney()
         {
             List<SoTietKiem> lst = new List<SoTietKiem>();
             try
@@ -17,16 +19,22 @@ namespace BackEnd
                     lst = context.SoTietKiem.ToList();
                 }
 
-                return lst.ToArray();
+                retObjValueBackEnd.Success = true;
+                retObjValueBackEnd.Data = lst.ToArray();
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public SoTietKiem[] SearchSaveMoneyByCondition(SoTietKiem sc)
+        public ReturnObjValueBackEnd SearchSaveMoneyByCondition(SoTietKiem sc)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
             List<SoTietKiem> lst = new List<SoTietKiem>();
             try
             {
@@ -75,49 +83,63 @@ namespace BackEnd
                 }
 
                 lst = query.ToList();
-                return lst.ToArray();
+                retObjValueBackEnd.Success = true;
+                retObjValueBackEnd.Data = lst.ToArray();
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public bool InsertSaveMoney(SoTietKiem objInsert)
+        public ReturnObjValueBackEnd InsertSaveMoney(SoTietKiem objInsert)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
             try
             {
                 var ctx = new BankingContext();
                 ctx.SoTietKiem.Add(objInsert);
                 ctx.SaveChanges();
-                return true;
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
 
         }
 
-        public bool UpdateSaveMoney(SoTietKiem objUpdate)
+        public ReturnObjValueBackEnd UpdateSaveMoney(SoTietKiem objUpdate)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
             try
             {
                 var ctx = new BankingContext();
                 ctx.Entry(objUpdate).State = System.Data.Entity.EntityState.Modified;
                 ctx.SaveChanges();
-                return true;
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public bool DeleteSaveMoney(List<SoTietKiem> lstID)
+        public ReturnObjValueBackEnd DeleteSaveMoney(List<SoTietKiem> lstID)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
             try
             {
                 var ctx = new BankingContext();
@@ -130,11 +152,14 @@ namespace BackEnd
                     ctx.Entry(lst[i]).State = System.Data.Entity.EntityState.Deleted;
                 }
                 ctx.SaveChanges();
-                return true;
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
 

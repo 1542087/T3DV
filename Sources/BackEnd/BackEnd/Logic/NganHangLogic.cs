@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using CreditManagement.Models;
+using BackEnd.Logic;
 
 namespace BackEnd
 {
     class NganHangLogic
     {
-        public CreditManagement.Models.NganHang[] SearchAllBanking()
+        ReturnObjValueBackEnd retObjValueBackEnd = new ReturnObjValueBackEnd();
+        public ReturnObjValueBackEnd SearchAllBanking()
         {
             List<CreditManagement.Models.NganHang> lst = new List<CreditManagement.Models.NganHang>();
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
+
             try
             {
 
@@ -18,17 +22,24 @@ namespace BackEnd
                    lst = context.NganHang.ToList();
                 }
 
-                return lst.ToArray();
+                retObjValueBackEnd.Success = true;
+                retObjValueBackEnd.Data = lst.ToArray();
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public CreditManagement.Models.NganHang[] SearchBankingByCondition(CreditManagement.Models.NganHang sc)
+        public ReturnObjValueBackEnd SearchBankingByCondition(CreditManagement.Models.NganHang sc)
         {
             List<CreditManagement.Models.NganHang> lst = new List<CreditManagement.Models.NganHang>();
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
+
             try
             {
                 var ctx = new BankingContext();
@@ -53,50 +64,65 @@ namespace BackEnd
                     }
                 }
 
-                lst = query.ToList();
-                return lst.ToArray();
+                retObjValueBackEnd.Success = true;
+                retObjValueBackEnd.Data = lst.ToArray();
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public bool InsertBanking(CreditManagement.Models.NganHang objInsert)
+        public ReturnObjValueBackEnd InsertBanking(CreditManagement.Models.NganHang objInsert)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
             try
             {
                 var ctx = new BankingContext();
                 ctx.NganHang.Add(objInsert);
                 ctx.SaveChanges();
-                return true;
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
 
         }
 
-        public bool UpdateBanking(CreditManagement.Models.NganHang objUpdate)
+        public ReturnObjValueBackEnd UpdateBanking(CreditManagement.Models.NganHang objUpdate)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
+
             try
             {
                 var ctx = new BankingContext();
                 ctx.Entry(objUpdate).State = System.Data.Entity.EntityState.Modified;
                 ctx.SaveChanges();
-                return true;
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public bool DeleteBanking(List<string> lstID)
+        public ReturnObjValueBackEnd DeleteBanking(List<string> lstID)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
+
             try
             {
                 var ctx = new BankingContext();
@@ -107,11 +133,14 @@ namespace BackEnd
                     ctx.Entry(lst[i]).State = System.Data.Entity.EntityState.Deleted;
                 }
                 ctx.SaveChanges();
-                return true;
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
 

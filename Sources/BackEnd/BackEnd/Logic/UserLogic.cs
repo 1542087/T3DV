@@ -2,20 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using CreditManagement.Models;
+using BackEnd.Logic;
 
 namespace BackEnd
 {
     class UserLogic
     {
+        ReturnObjValueBackEnd retObjValueBackEnd = new ReturnObjValueBackEnd();
+
         /// <summary>
         /// Lấy thông tin nhân viên dựa vào useris và password
         /// </summary>
         /// <param name="userId">user id</param>
         /// <param name="pass">password</param>
         /// <returns></returns>
-        public NhanVien CheckLogin(string userId, string pass)
+        public ReturnObjValueBackEnd CheckLogin(string userId, string pass)
         {
             NhanVien lstTTNhanVien = new NhanVien();
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
+
             try
             {
                 using (var ct = new BankingContext())
@@ -31,50 +36,65 @@ namespace BackEnd
 
                     }
                 }
-                
-                return lstTTNhanVien;
+
+                retObjValueBackEnd.Success = true;
+                retObjValueBackEnd.Data = lstTTNhanVien;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return null;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public bool InsertUser(MSTUSER objInsert)
+        public ReturnObjValueBackEnd InsertUser(MSTUSER objInsert)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
             try
             {
                 var ctx = new BankingContext();
                 ctx.MstUser.Add(objInsert);
                 ctx.SaveChanges();
-                return true;
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
 
         }
 
-        public bool UpdateUser(MSTUSER objUpdate)
+        public ReturnObjValueBackEnd UpdateUser(MSTUSER objUpdate)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
+
             try
             {
                 var ctx = new BankingContext();
                 ctx.Entry(objUpdate).State = System.Data.Entity.EntityState.Modified;
                 ctx.SaveChanges();
-                return true;
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
-        public bool DeleteUser(List<string> lstID)
+        public ReturnObjValueBackEnd DeleteUser(List<string> lstID)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
+
             try
             {
                 var ctx = new BankingContext();
@@ -93,11 +113,14 @@ namespace BackEnd
                     userModel.DELETE_YMD = DateTime.Now;
                     UpdateUser(userModel);
                 }
-                return true;
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
 

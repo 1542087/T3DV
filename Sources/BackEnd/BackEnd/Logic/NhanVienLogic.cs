@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using CreditManagement.Models;
+using BackEnd.Logic;
 
 namespace BackEnd
 {
     class NhanVienLogic
     {
-        public NhanVien[] SearchAllStaff()
+        ReturnObjValueBackEnd retObjValueBackEnd = new ReturnObjValueBackEnd();
+
+        public ReturnObjValueBackEnd SearchAllStaff()
         {
             List<NhanVien> lstNhanVien = new List<NhanVien>();
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
             try
             {
                
@@ -18,17 +22,23 @@ namespace BackEnd
                     lstNhanVien = context.NhanVien.ToList();
                 }
 
-                return lstNhanVien.ToArray();
+                retObjValueBackEnd.Success = true;
+                retObjValueBackEnd.Data = lstNhanVien.ToArray();
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public NhanVien[] SearchStaffByCondition(NhanVien sc)
+        public ReturnObjValueBackEnd SearchStaffByCondition(NhanVien sc)
         {
             List<NhanVien> lstNhanVien = new List<NhanVien>();
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
             try
             {
                 var ctx = new BankingContext();
@@ -74,49 +84,63 @@ namespace BackEnd
                 }
 
                 lstNhanVien = query.ToList();
-                return lstNhanVien.ToArray();
+                retObjValueBackEnd.Success = true;
+                retObjValueBackEnd.Data = lstNhanVien.ToArray();
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public bool InsertStaff(NhanVien staff)
+        public ReturnObjValueBackEnd InsertStaff(NhanVien staff)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
             try
             {
                 var ctx = new BankingContext();
                 ctx.NhanVien.Add(staff);
                 ctx.SaveChanges();
-                return true;
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
            
         }
 
-        public bool UpdateStaff(NhanVien staff)
+        public ReturnObjValueBackEnd UpdateStaff(NhanVien staff)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
             try
             {
                 var ctx = new BankingContext();
                 ctx.Entry(staff).State = System.Data.Entity.EntityState.Modified;
                 ctx.SaveChanges();
-                return true;
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
         }
 
-        public bool DeleteStaff(List<string> lstMaNV)
+        public ReturnObjValueBackEnd DeleteStaff(List<string> lstMaNV)
         {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
             try
             {
                 var ctx = new BankingContext();
@@ -127,11 +151,14 @@ namespace BackEnd
                     ctx.Entry(lstNV[i]).State = System.Data.Entity.EntityState.Deleted;
                 }
                 ctx.SaveChanges();
-                return true;
+                retObjValueBackEnd.Success = true;
+                return retObjValueBackEnd;
             }
             catch (Exception ex)
             {
-                return false;
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
                 throw ex;
             }
 
