@@ -1,22 +1,23 @@
 use master
 go
 
-if exists (select name from master..sysdatabases where name = 'BankingManagement')
-	drop database BankingManagement
+if exists (select name from master..sysdatabases where name = 'BankingManagement_ver3')
+	drop database BankingManagement_ver3
 go
 
-create database BankingManagement
+create database BankingManagement_ver3
 go
 
-use BankingManagement
+use BankingManagement_ver3
 go
 
 create table MSTUSER
 (
 	PSN_CD decimal,
+	--Trung-NM Tu dong zen userid theo manv add new
 	USERID varchar(8),
 	PASSWD varchar(8),
-	USERNAME nvarchar(80),
+	--Trung-NM USERNAME nvarchar(80),
 	DELETE_YMD datetime,
 	INSERT_YMD datetime
 	primary key(PSN_CD)
@@ -47,6 +48,7 @@ go
 
 create table NhanVien
 (
+	--Trung-NM Tao moi nhan vien MaNV lam sao cho tu tang
 	MaNV nvarchar(30),
 	cmnd int,
 	ChucVu nvarchar(10),
@@ -70,6 +72,8 @@ create table TaiKhoan
 	NgayTao datetime,
 	NgayHuy datetime,
 	MaNV nvarchar(30),
+	--Trung-NM add them SoDu
+	SoDu decimal,
 	MaCN nvarchar(30),
 	ChuThich nvarchar(200)
 	primary key(MaTK)
