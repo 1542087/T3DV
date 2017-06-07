@@ -8,12 +8,24 @@ namespace BackEnd.Logic
 {
     class ReturnObjValueBackEnd
     {
-        //private Boolean _succsess;
-        //private Object _data;
-        //private String _message;
-        public Boolean Success { get; set; }
-        public Object Data { get; set; }
-        public String Message { get; set; }
+        private Boolean _succsess = false;
+        private Object _data = null;
+        private String _message = string.Empty;
+        public Boolean Success {
+            get { return _succsess; }
+            set { _succsess = value; }
+        
+        }
+        public Object Data
+        {
+            get { return _data; }
+            set { _data = value; }
+        }
+        public String Message
+        {
+            get { return _message; }
+            set { _message = value; }
+        }
 
     }
 }
