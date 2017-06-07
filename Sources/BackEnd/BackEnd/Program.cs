@@ -1,4 +1,5 @@
-﻿using CreditManagement.Models;
+﻿using BackEnd.Logic;
+using CreditManagement.Models;
 using System.Collections.Generic;
 
 namespace BackEnd
@@ -8,7 +9,7 @@ namespace BackEnd
         static void Main(string[] args)
         {
             NhanVienLogic nv = new NhanVienLogic();
-            NhanVien[] lst = nv.SearchAllStaff();
+            ReturnObjValueBackEnd lst = nv.SearchAllStaff();
             string a = "";
         }
     }
