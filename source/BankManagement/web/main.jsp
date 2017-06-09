@@ -41,7 +41,7 @@
 <body style="background-color: #d9edf7">
 <div class="container">
 <div class="col-md-3 col-md-offset-10"><b>Xin chào User @@@  </b> | 
-<a href="#" style="font-size:18px">Logout</a>
+<a href="index.html" style="font-size:18px">Logout</a>
 </div>
 	<!-- header-->
 <div class="row" style="margin-top:20px">
@@ -66,6 +66,12 @@
               </button>
           	<span class="text-center"><br>Thêm Khách Hàng</span>
           </div> <!-- icon them khach hang-->
+           <script type="text/javascript">
+                    $('#themKH').click(function (){
+                          $('#createTK').load("Them_KhachHang.html"); 
+                    });     
+            </script>
+          
           
           <!-- icon them khach hang-->
           <div class="col-md-2 col-md-offset-0">
@@ -83,12 +89,11 @@
  </div><!-- header-->
  <div class="row col-md-9"><!-- row content-->
     <!-- content-->
-    <div class="col-md-9 col-sm-9 col-lg-9 col-md-offset-0 panel-default" id="containscreen">
-        <div id="createTK" style="margin-top: 30px;">
+    <div class="col-md-12 col-sm-12 col-lg-12 col-md-offset-0 panel-default" id="containscreen">
+        <div id="createTK" style="margin-top: 10px;">
             
             
             <!-- noi dung contain--> 
-             <jsp:include page="Them_KH.jsp"></jsp:include>
             
             
         </div>
@@ -100,12 +105,16 @@
         padding-top: 20px; padding-bottom: 20px; float: right ">
     	<div class="row">
             <div class="col-md-offset-3">
-                  <button type="button" class="btn btn-info btn-squre" style="padding:0px">
+                <button id="chuyentien" type="button" class="btn btn-info btn-squre" style="padding:0px">
                     <img src="Images/chuyentien.jpg" width="80px" height="80px" class="img-circle text-center"/>
                   </button><br />
                <b style="padding-left:20px">Chuyển Tiền</b>
               </div> <!-- icon chuyen tien-->
-          
+              <script type="text/javascript">
+                    $('#chuyentien').click(function (){
+                          $('#createTK').load('ChuyenTien.html'); 
+                    });     
+            </script>
         </div>
         <!-- icon rut tien-->
         <div class="row" style="margin-top:20px">
@@ -115,15 +124,26 @@
                   </button><br />
                 <b style="padding-left:20px">Rút Tiền</b>
               </div> <!-- icon rut tien-->
-          
+             <%
+                 if(request.getAttribute("btnNext")==null)
+                 {
+             %>
+             <script>
+               document.getElementById('createTK').innerHTML= "ChuyenTien_Next.html";
+             </script>
         </div> <!-- icon so tiet kiem-->
         <div class="row" style="margin-top:20px">
             <div class="col-md-offset-3">
-                  <button type="button" class="btn btn-info btn-squre" style="padding:0px">
+                <button id="soTK" type="button" class="btn btn-info btn-squre" style="padding:0px">
                     <img src="Images/sotietkiem.jpg" width="80px" height="80px" class="img-circle text-center"/>
                   </button><br />
                 <b style="padding-left:20px">Sổ Tiết Kiệm</b>
               </div> <!--  icon so tiet kiem-->
+              <script type="text/javascript">
+                    $('#soTK').click(function (){
+                          $('#createTK').load("SoTietKiem.html"); 
+                    });     
+              </script>
           
         </div>
         
