@@ -23,6 +23,15 @@ create table MSTUSER
 )
 go
 
+--add-start ThanhTH
+create table KhachHang_TaiKhoan
+(
+	id int,
+	MaKH nvarchar(30),
+	MaTK nvarchar(30),
+)
+--dd-end
+	
 create table KhachHang
 (
 	MaKH nvarchar(30),
@@ -66,11 +75,18 @@ create table TaiKhoan
 (
 	MaTK nvarchar(30),
 	SoTK int,
+	--add-start ThanhTH
+	MaPIN nvarchar(10),
+	--add-end
 	MaKH nvarchar(30),
 	NgayTao datetime,
 	NgayHuy datetime,
-	MaNV nvarchar(30),
+	MaNV nvarchar(30),--start-delete ThanhTH  khong can thiet
 	MaCN nvarchar(30),
+	--add-start ThanhTH
+	SoTien double,
+	LoaiTK int,
+	--add-end
 	ChuThich nvarchar(200)
 	primary key(MaTK)
 )
@@ -106,7 +122,10 @@ go
 create table GiaoDich
 (
 	MaGD nvarchar(30),
-	MaKH nvarchar(30),
+	MaKH nvarchar(30),--start-delete ThanhTH ko can luu MaKH. cai can luu la taikhoan nao dang giao dich.
+	--add-start ThanhTH
+	MaTK nvarchar(30)
+	--add-end
 	SoTien numeric(28,0),
 	NgayCapNhat datetime
 	primary key(MaGD)
@@ -116,7 +135,10 @@ go
 create table ChiTietGiaoDich
 (
 	MaGD nvarchar(30),
-	MaKH nvarchar(30),
+	MaKH nvarchar(30),--start-delete ThanhTH
+	--add-start ThanhTH
+	MaTK nvarchar(30)
+	--add-end
 	NgayGD datetime,
 	MaNV nvarchar(30),
 	MaCNNH nvarchar(30),
@@ -125,6 +147,9 @@ create table ChiTietGiaoDich
 	TrangThai nvarchar(1),
 	PhiGD int,
 	MaTKNguoiNhan nvarchar(30)
+	--add-start ThanhTH loai 1 la RutTien, loai 2 la chuyen tien, loai 3 la nap tien,...
+	LoaiGD nvarchar(30),
+	--add-end
 	primary key(NgayGD,MaKH)
 )
 go
