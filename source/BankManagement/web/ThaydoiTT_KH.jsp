@@ -15,7 +15,7 @@
 </head>
 <body>
     <form accept-charset="ISO-8859-1" action="ThaydoiTT_KH">
-<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">

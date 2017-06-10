@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+        <form action="ChuyenTien" method="POST">
+                    <fieldset style="margin-bottom: 20px">
+                        <legend style="background-color: #0F9">Tài Khoản Chuyển </legend>
+                           <!-- Text input-->
+                           <div class="form-group form-horizontal">
+                             <label class="col-md-6 control-label" for="textinput">Chọn Tài Khoản</label>  
+                             <div class="col-md-6">
+                                 <select class="form-control">
+                                     <option>abc</option>
+                                 </select>
+                             </div>
+                           </div>
+                    </fieldset>
+                    
+                    <fieldset style="margin-bottom: 20px">
+                        <legend style="background-color: #0F9">Tài Khoản Nhận: </legend>
+                           <!-- Text input-->
+                           <div class="form-horizontal">
+                             <div class="form-group">
+                                <label class="col-md-6 control-label" for="textinput">Tài Khoản Nhận </label>  
+                                <div class="col-md-6">
+                                <input id="txtTK_nguon" name="txtTK_nguon"  class="form-control input-md" required="" type="text" value="">
+                                </div>
+                             </div>
+                             <div class="form-group">
+                                <label class="col-md-6 control-label" for="textinput">Tên Người Nhận </label>  
+                                <div class="col-md-6">
+                                <input id="txtTK_nguon" name="txtTK_nguon"  class="form-control input-md" required="" type="text" value="">
+                                </div>
+                             </div>
+                             <div class="form-group">
+                                <label class="col-md-6 control-label" for="textinput">CMND Người Nhận </label>  
+                                <div class="col-md-6">
+                                <input id="txtTK_nguon" name="txtTK_nguon"  class="form-control input-md" required="" type="text" value="">
+                                </div>
+                             </div>
+                            
+                            
+                        </div>
+                    </fieldset>
+                    
+                     <fieldset style="margin-bottom: 20px">
+                        <legend style="background-color: #0F9">Thông Tin Gửi: </legend>
+                           <!-- Text input-->
+                           <div class="form-group form-horizontal">
+                            <div class="form-group">
+                                <label class="col-md-6 control-label" for="textinput">Số tiền gởi ghi bằng Số </label>  
+                                <div class="col-md-6">
+                                <input id="txtTK_nguon" name="txtTK_nguon"  class="form-control input-md" required="" type="text" value="">
+                                </div>
+                             </div>
+                             <div class="form-group">
+                                <label class="col-md-6 control-label" for="textinput">Số tiền gởi ghi bằng Chữ: </label>  
+                                <div class="col-md-6">
+                                <input id="txtTK_nguon" name="txtTK_nguon"  class="form-control input-md" required="" type="text" value="">
+                                </div>
+                             </div>
+                             <div class="form-group">
+                                <label class="col-md-6 control-label" for="textinput">Nội Dung </label>  
+                                <div class="col-md-6">
+                                    <textarea id="txtNoiDung" name="txtNoiDung"  class="form-control input-md" required="" type="text" value="">
+                                    </textarea>
+                                </div>
+                             </div>
+                               <!-- Text input-->
+                           <div class="form-group form-horizontal">
+                             <label class="col-md-6 control-label" for="textinput">Chọn Chi Nhánh Ngân Hàng</label>  
+                             <div class="col-md-6">
+                                 <select class="form-control">
+                                     <option>abc</option>
+                                 </select>
+                             </div>
+                           </div>
+                               
+                               <!-- Text input-->
+                            <div class="form-group ">
+                                <label class="col-md-6 control-label" for="date">
+                                 Date
+                                 <span class="asteriskField" style="color: red">*</span>
+                                </label>
+                                <div class="control-group col-md-6">
+                                         <div class="controls input-append date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                             <input size="16" type="text" value="" readonly class="form-control input-md" >
+                                             <span class="add-on"><i class="icon-remove"></i></span>
+                                             <span class="add-on"><i class="icon-th"></i></span>
+                                         </div>
+                                             <input type="hidden" id="dtp_input2" value="" /><br/>
+                                 </div>
+                               </div>
+                               
+                           </div>
+                    </fieldset>
+                        
+                    <div class="row">
+                        <input type="submit" value="Previous" name="btnPrevious" class="col-md-2 col-md-offset-6 btn btn-toolbar btn-warning"  style="margin-left: 400px;margin-right: 10px"/>
+                        <input id="next" type="submit" value="Next" name="btnNext" class="col-md-2 col-md-offset-8 btn btn-toolbar btn-warning"/>
+                    </div>
+            </form>   
+    </body>
+    
+     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script>
+	$('.form_date').datetimepicker({
+        language:  'uk',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+</script>
+</html>
