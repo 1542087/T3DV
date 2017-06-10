@@ -75,7 +75,7 @@
  </div><!-- header-->
  <div class="row col-md-9"><!-- row content-->
     <!-- content-->
-    <div id="insertcontent" class="col-md-9 col-sm-9 col-lg-9 col-md-offset-0 panel-default" id="containscreen">
+    <div id="insertcontent" class="col-md-12 col-sm-12 col-lg-12 col-md-offset-0 panel-default" id="containscreen">
         <div id="insertcontent" style="margin-top: 10px;">
             
             

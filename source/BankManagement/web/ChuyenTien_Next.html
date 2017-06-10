@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+       <form>
+           <table class="table tab-pane table-bordered table-hover">
+               <tbody class="form-horizontal">
+                   <tr>
+                       <td>Tài Khoản chuyển</td>
+                       <td><input class="form-control" type="text" name="txtTKChuyen" value=""  readonly="none"/></td>
+                   </tr>
+                   <tr>
+                        <td>Tài Khoản nhận</td>
+                       <td><input class="form-control" type="text" name="txtTKNhan" value="" readonly="none"/></td>
+                   </tr>
+                   <tr>
+                        <td>Tên Người nhận</td>
+                       <td><input class="form-control" type="text" name="txtTenNhan" value="" readonly="none"/></td>
+                   </tr>
+                   <tr>
+                        <td>CMND Người Nhận</td>
+                       <td><input class="form-control" type="text" name="txtCMNDNhan" value="" readonly="none"/></td>
+                   </tr>
+                   <tr>
+                        <td>Số Tiền Gửi</td>
+                       <td><input class="form-control" type="text" name="txtCMNDNhan" value="" readonly="none"/></td>
+                   </tr>
+                   <tr>
+                       <td>Nội Dung</td>
+                       <td>
+                            <textarea id="txtNoiDung" name="txtNoiDung"  class="form-control input-md" required="" type="text" value="">
+                            </textarea>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td>Chi Nhánh Ngân Hàng</td>
+                       <td><input class="form-control" type="text" name="txtCN" value="123 Cộng Hòa" readonly="none"/></td></td>
+                   </tr>
+                   <tr>
+                       <td>Date</td>
+                       <td>
+                           <input class="form-control" type="text" name="txtCN" value="1/12" readonly="none"/>
+                       </td>
+                   </tr>
+               </tbody>
+           </table>
+
+                    
+                    <div class="form-inline">
+                    <input type="submit" value="Previous" name="btnPrevious" class="col-md-1 col-md-offset-6 btn btn-toolbar btn-warning"  style="margin-left: 700px; margin-right: 10px"/>
+                    <input type="submit" value="Next" name="btnNext" class="col-md-1 col-md-offset-10 btn btn-toolbar btn-warning"/>
+                    </div>
+            </form>   
+    </body>
+    
+     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script>
+	$('.form_date').datetimepicker({
+        language:  'uk',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+</script>
+</html>

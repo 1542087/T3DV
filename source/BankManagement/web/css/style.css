@@ -47,3 +47,62 @@ color:#F00;
 }
 
 
+.site-title a {
+display: block;    
+padding-left: 35px; 
+background-image: url(/wp-content/uploads/2016/05/nlk-logo-smaller.gif);
+    background-repeat: no-repeat;
+    background-position: left top;    
+}
+
+.carousel-caption {
+    top: 0;
+    bottom: auto; 
+}
+
+.carousel .slide-title {
+    font: bold 80px Montserrat, \"Open Sans\", sans-serif;
+	font-size: 80px;  
+}
+
+.highlight-title, .call-to-action {
+   display: none;
+   visibility: none; 
+}
+
+.excerpt img.size-full {
+    width: auto;
+}
+
+.input-group-btn .btn-group {
+    display: flex !important;
+}
+
+#adv-search {
+    padding: 10px 0 0 0;
+}
+
+#adv-search .nlk-dropdown {
+    left: -150px;
+}
+
+@media screen and (min-width: 768px) {
+    #adv-search {
+        width: 500px;
+        margin: 0 auto;
+    }
+}
+
+#nlk-search-submit {
+  width: 100px;
+  padding-left: 5px;
+  padding-right: 5px;  
+}
+
+#nlk-search-str {
+  border-radius: 4px 0 0 4px;
+  min-width: 140px;
+  color: rgb(0,0,0);  
+}
+
+

@@ -11,30 +11,42 @@
 <body>
     <form class="form-horizontal"> 
         <div class="text-center" style="font-size: 20px; color:red; font-weight: bold; margin-left: 60px; margin-bottom: 20px">
-            Tạo Tài Khoản Khách Hàng
+            Thêm Khách Hàng
         </div>
          <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-6 control-label" for="textinput">Mã Tài Khoản</label>  
+          <label class="col-md-6 control-label" for="textinput">Mã Khách Hàng</label>  
           <div class="col-md-6">
-          <input id="textinput" name="textinput"  class="form-control input-md" required="" type="text" value="01234556001" readonly="readonly">
-          <span class="help-block"> </span>  
+          <input id="textinput" name="textinput"  class="form-control input-md" required="" type="text" value="KH001" readonly="readonly">
           </div>
         </div>
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-6 control-label" for="textinput">Số Tài Khoản</label>  
+          <label class="col-md-6 control-label" for="textinput">Tên Khách Hàng
+               <span class="asteriskField" style="color: red">*</span>
+          </label>  
           <div class="col-md-6">
-          <input id="textinput" name="textinput"  class="form-control input-md" required="" type="text" value="2027-4432-8982-0001" readonly="readonly">
-          <span class="help-block"> </span>  
+          <input id="textinput" name="textinput"  class="form-control input-md" required="" type="text" value="" placeholder="Tên khách hàng">
+          </div>
+        </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-6 control-label" for="textinput">Giới Tính
+          </label>  
+          <div class="col-md-6">
+              <select class="form-control">
+                    <option>Nam</option>
+                    <option>Nữ</option>
+                </select>
           </div>
         </div>
 
         <!-- Text input-->
         <div class="form-group ">
             <label class="col-md-6 control-label" for="date">
-             Date
+             Ngày Sinh
              <span class="asteriskField" style="color: red">*</span>
             </label>
             <div class="control-group col-md-6">
@@ -49,30 +61,25 @@
         
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-6 control-label" for="textinput">Số Tiền</label>  
+          <label class="col-md-6 control-label" for="textinput">Địa Chỉ
+               <span class="asteriskField" style="color: red">*</span>
+          </label>  
           <div class="col-md-6">
-          <input id="textinput" name="textinput" class="form-control input-md" required="" type="text" placeholder="Số Tiền">
-          <span class="help-block"> </span>  
+              <textarea id="textinput" name="textinput" class="form-control input-md" required="" type="text" placeholder="Địa chỉ"> </textarea>
           </div>
         </div>
         
-        <!-- Text input-->
+         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-6 control-label" for="textinput">Mã Nhân Viên Tạo</label>  
+          <label class="col-md-6 control-label" for="textinput">Số Điện Thoại
+               <span class="asteriskField" style="color: red">*</span>
+          </label>  
           <div class="col-md-6">
-          <input id="textinput" name="textinput"  class="form-control input-md" required="" type="text" value="NV0001" readonly="readonly">
-          <span class="help-block"> </span>  
+          <input id="textinput" name="textinput" class="form-control input-md" required="" type="text" placeholder="số điện thoại"> 
           </div>
         </div>
                 
-         <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-6 control-label" for="textinput">Mã Chi Nhánh</label>  
-          <div class="col-md-6">
-          <input id="textinput" name="textinput"  class="form-control input-md" required="" type="text" value="CN0001" readonly="readonly">
-          <span class="help-block"> </span>  
-          </div>
-        </div>        
+              
                 
         <div class="form-group">
          <div class="col-sm-10 col-sm-offset-5">
