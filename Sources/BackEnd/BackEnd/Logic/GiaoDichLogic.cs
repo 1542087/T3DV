@@ -151,7 +151,7 @@ namespace BackEnd
                 retObjValueBackEnd = gdLogic.InsertDeal(gd);
                 if (retObjValueBackEnd.Success == false)
                 {
-                    retObjValueBackEnd = null;
+                    retObjValueBackEnd.Message = "Insert vào table giao dịch không thành công";
                     return retObjValueBackEnd;
                 }
 
@@ -170,7 +170,7 @@ namespace BackEnd
 
                 retObjValueBackEnd = ctgdLogic.InsertDealDetail(ctgd);
                 if(retObjValueBackEnd.Success == false ){
-                    retObjValueBackEnd = null;
+                    retObjValueBackEnd.Message = "Insert vào table chi tiết giao dịch không thành công";
                     return retObjValueBackEnd;
                 }
 
