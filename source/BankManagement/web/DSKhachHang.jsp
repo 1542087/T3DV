@@ -97,7 +97,18 @@
         <td>haz@gmail.com</td>
         <td>xxxxx</td>
         <td>
-            <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p>
+            <p data-placement="top" data-toggle="tooltip" title="Edit">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">1</a></li>
+                      <li><a href="#">2</a></li>
+                      <li><a href="#">3</a></li>
+                    </ul>
+                </div>
+            </p>
         </td>
         <td>
             <p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p>
@@ -112,7 +123,18 @@
     <td>Tphcm</td>
     <td>haz@gmail.com</td>
     <td>xxxxx</td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+    <td><p data-placement="top" data-toggle="tooltip" title="Edit">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">1</a></li>
+                      <li><a href="#">2</a></li>
+                      <li><a href="#">3</a></li>
+                    </ul>
+                </div>
+            </p></td>
     <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
   </tr>
     
@@ -134,8 +156,7 @@
 						</ul>
 					</div>
 	</div>
-        <script src="js/newscript.js"></script>  
-        <script src="js/bootstrap.min.js"></script>  
+        
     <jsp:include page="ThaydoiTT_KH.jsp"></jsp:include>
    
     <jsp:include page="Xoa_KH.jsp"></jsp:include>
