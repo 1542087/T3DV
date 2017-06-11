@@ -57,6 +57,7 @@
     <Compile Include="GiaoDich.cs" />
     <Compile Include="KhachHang.cs" />
     <Compile Include="Logic\ChiNhanhNHLogic.cs" />
+    <Compile Include="Logic\ReturnObjValueBackEnd.cs" />
     <Compile Include="Logic\CTGiaoDichLogic.cs" />
     <Compile Include="Logic\GiaoDichLogic.cs" />
     <Compile Include="Logic\KhachHangLogic.cs" />
