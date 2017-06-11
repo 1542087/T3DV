@@ -108,7 +108,7 @@ namespace BackEnd
                 int maxCurrent = Convert.ToInt16( maxId.Substring(2, maxId.Length-2));
                 int maxNext = maxCurrent + 1;
                 string manv = maxNext.ToString().PadLeft(4, '0');
-                staff.MaNV = manv;
+                staff.MaNV = "NV"+ manv;
                 ctx.NhanVien.Add(staff);
                 ctx.SaveChanges();
                 retObjValueBackEnd.Success = true;
