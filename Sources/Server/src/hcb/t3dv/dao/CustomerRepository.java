@@ -8,6 +8,7 @@ import com.javonet.JavonetException;
 import com.javonet.api.NObject;
 
 import hcb.t3dv.CSharpBridge;
+import hcb.t3dv.Constant;
 import hcb.t3dv.IGenericRepository;
 import hcb.t3dv.pojo.Customer;
 
@@ -17,18 +18,24 @@ public class CustomerRepository implements IGenericRepository<Customer> {
 	private static final String ACCOUNT_DOMAIN = "BackEnd.TaiKhoanLogic";
 
 	@Override
-	public List<Customer> getAll() {
+	public List<Customer> getAll() throws Exception {
 		try {
-			NObject[] result = CSharpBridge.plural(DOMAIN, "SearchAllCustomer");
-			List<Customer> customers = new ArrayList<>();
-			for (int i = 0; i < result.length; i++) {
-				customers.add(parse(result[i]));
+			NObject result = CSharpBridge.single(DOMAIN, "SearchAllCustomer");
+			boolean success = result.get(Constant.RESULT_OK);
+			if(success) {
+				NObject[] nobjectCustomers = result.get(Constant.RESULT_DATA);
+				List<Customer> customers = new ArrayList<>();
+				for (int i = 0; i < nobjectCustomers.length; i++) {
+					customers.add(parse(nobjectCustomers[i]));
+				}
+				return customers;
+			} else {
+				throw new Exception((String)result.get(Constant.RESULT_MSG));
 			}
-			return customers;
 		} catch (JavonetException e) {
 			e.printStackTrace();
+			throw new Exception(e.getCause().getMessage());
 		}
-		return null;
 	}
 
 	@Override
@@ -56,36 +63,43 @@ public class CustomerRepository implements IGenericRepository<Customer> {
 	}
 
 	@Override
-	public void add(Customer item) {
+	public Customer add(Customer item) throws Exception {
 		try {
 			NObject dtoCustomer = customer(item);
-			NObject result1 = CSharpBridge.single(DOMAIN, "InsertCustomer", dtoCustomer);
-			Boolean s1 = result1.get("success");
-			if(s1) {
-				NObject dtoAccount = account(item);
-				NObject result2 = CSharpBridge.single(ACCOUNT_DOMAIN, "InsertAccount", dtoAccount);
-				Boolean s2 = result2.get("success");
-				// TODO return s1 & s2;
+			NObject result = CSharpBridge.single(DOMAIN, "InsertCustomer", dtoCustomer);
+			Boolean success = result.get(Constant.RESULT_OK);
+			if(success) {
+				String customerID = result.get(Constant.RESULT_DATA);
+				item.setId(customerID);
+				return item;
+			} else {
+				throw new Exception((String) result.get(Constant.RESULT_MSG));
 			}
 		} catch (JavonetException e) {
 			e.printStackTrace();
+			throw new Exception(e.getCause().getMessage());
 		}
 	}
 
 	@Override
-	public void update(Customer item) {
+	public Customer update(Customer item) throws Exception {
 		try {
 			String accountID = item.getAccountID();
 			if(accountID != null) {
 				NObject updateBalance = updateBalance(item);	
 				NObject result = CSharpBridge.single(ACCOUNT_DOMAIN, "UpdateAccount", updateBalance);
-				Boolean success = result.get("success"); 
+				Boolean success = result.get(Constant.RESULT_OK); 
 				if(success) {
-					// TODO
+					return (Customer)result.get(Constant.RESULT_DATA);
+				} else {
+					throw new Exception((String) result.get(Constant.RESULT_MSG));
 				}
+			} else {
+				throw new IllegalArgumentException("accountID is missing");
 			}
 		} catch (JavonetException e) {
 			e.printStackTrace();
+			throw new Exception(e.getCause().getMessage());
 		}
 	}
 

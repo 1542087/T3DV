@@ -30,12 +30,14 @@ public class TodoRepository implements IGenericRepository<Todo> {
 	}
 
 	@Override
-	public void add(Todo item) {
+	public Todo add(Todo item) {
 		App.mData.add(item);
+		return null;
 	}
 
 	@Override
-	public void update(Todo item) {
+	public Todo update(Todo item) {
+		return null;
 	}
 
 	@Override

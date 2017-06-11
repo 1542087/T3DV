@@ -6,6 +6,7 @@ import com.javonet.JavonetException;
 import com.javonet.api.NObject;
 
 import hcb.t3dv.CSharpBridge;
+import hcb.t3dv.Constant;
 import hcb.t3dv.IGenericRepository;
 import hcb.t3dv.pojo.Staff;
 
@@ -24,25 +25,30 @@ public class StaffRepository implements IGenericRepository<Staff> {
 	}
 
 	@Override
-	public Staff getSingle(ISpecification spec) {
+	public Staff getSingle(ISpecification spec) throws Exception {
 		try {
 			SingleQuery singleQuery = ((Specification)spec).singleQuery();
-			NObject bindingStaff = CSharpBridge.single(DOMAIN, "CheckLogin", singleQuery.id, singleQuery.password);
-			return parse(bindingStaff);
+			NObject result = CSharpBridge.single(DOMAIN, "CheckLogin", singleQuery.id, singleQuery.password);
+			boolean success = result.get(Constant.RESULT_OK);
+			if(success) {
+				return parse(result.get("_data"));
+			} else {
+				throw new Exception((String)result.get(Constant.RESULT_MSG));
+			}
 		} catch (JavonetException e) {
 			e.printStackTrace();
+			throw new Exception(e.getCause().getMessage());
 		}
-		return null;
 	}
 
 	@Override
-	public void add(Staff item) {
-		
+	public Staff add(Staff item) {
+		return item;
 	}
 
 	@Override
-	public void update(Staff item) {
-		
+	public Staff update(Staff item) {
+		return item;
 	}
 
 	@Override
@@ -54,7 +60,7 @@ public class StaffRepository implements IGenericRepository<Staff> {
 		return new Staff(object.get("MaNV"), object.get("cmnd"), object.get("CNTrucThuoc"));
 	}
 	
-	public interface Specification {
+	public interface Specification extends ISpecification {
 		SingleQuery singleQuery();
 		PluralQuery multipleQuery();
 	}

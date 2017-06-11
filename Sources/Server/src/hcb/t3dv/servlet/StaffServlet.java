@@ -1,18 +1,17 @@
 package hcb.t3dv.servlet;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import hcb.t3dv.pojo.staff.AuthRequest;
-import hcb.t3dv.pojo.staff.AuthResponse;
-import hcb.t3dv.pojo.staff.CreateCustomerRequest;
-import hcb.t3dv.pojo.staff.CreateCustomerResponse;
-import hcb.t3dv.pojo.staff.GetCustomersRequest;
-import hcb.t3dv.pojo.staff.GetCustomersResponse;
+import hcb.t3dv.pojo.request.AuthRequest;
+import hcb.t3dv.pojo.request.CreateCustomerRequest;
+import hcb.t3dv.pojo.request.GetCustomersRequest;
+import hcb.t3dv.pojo.response.AuthResponse;
+import hcb.t3dv.pojo.response.CreateCustomerResponse;
+import hcb.t3dv.pojo.response.GetCustomersResponse;
 
 @Path("staff")
 public class StaffServlet {
@@ -25,7 +24,7 @@ public class StaffServlet {
 		return null;
 	}
 	
-	@GET
+	@POST
 	@Path("customers")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

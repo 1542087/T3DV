@@ -41,4 +41,25 @@ public class CSharpBridgeTest {
 		}
 		return new Dummy("failed");
 	}
+	
+	@GET
+	@Path("objectarray")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Dummy[] tryout3() {
+		try {
+			NObject bankingContext = Javonet.New("ClassLibrary1.TestCallDll");
+			NObject whatever = bankingContext.invoke("MethodReturnWrapper");
+			
+			NObject[] objectArray = whatever.get("arrayOfObj");
+			Dummy[] result = new Dummy[objectArray.length];
+			for (int i = 0; i < result.length; i++) {
+				String data = (String)objectArray[i].get("_string") + (int)objectArray[i].get("_int");
+				result[i] = new Dummy(data);
+			}
+			return result;
+		} catch (JavonetException e) {
+			e.printStackTrace();
+		}
+		return new Dummy[0];
+	}
 }

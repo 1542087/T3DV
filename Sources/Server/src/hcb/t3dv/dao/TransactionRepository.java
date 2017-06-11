@@ -26,13 +26,13 @@ public class TransactionRepository implements IGenericRepository<Transaction> {
 	}
 
 	@Override
-	public void add(Transaction item) {
-		
+	public Transaction add(Transaction item) {
+		return null;
 	}
 
 	@Override
-	public void update(Transaction item) {
-		
+	public Transaction update(Transaction item) {
+		return null;
 	}
 
 	@Override
