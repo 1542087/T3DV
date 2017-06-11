@@ -11,6 +11,9 @@ namespace BackEnd.Logic
         private Boolean _succsess = false;
         private Object _data = null;
         private String _message = string.Empty;
+        private String _matk = string.Empty;
+        private String _magd = string.Empty;
+        private decimal _sodu = 0;
         public Boolean Success {
             get { return _succsess; }
             set { _succsess = value; }
@@ -27,5 +30,20 @@ namespace BackEnd.Logic
             set { _message = value; }
         }
 
+        public String MaTK
+        {
+            get { return _matk; }
+            set { _matk = value; }
+        }
+        public String MaGD
+        {
+            get { return _magd; }
+            set { _magd = value; }
+        }
+        public decimal SoDuConLai
+        {
+            get { return _sodu; }
+            set { _sodu = value; }
+        }
     }
 }
