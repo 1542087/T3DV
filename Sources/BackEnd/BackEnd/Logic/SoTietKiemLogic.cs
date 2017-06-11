@@ -102,6 +102,21 @@ namespace BackEnd
             try
             {
                 var ctx = new BankingContext();
+                string maxId = "";
+                maxId = (from c in ctx.SoTietKiem select c.MaSTK).Max();
+
+                if (!string.IsNullOrEmpty(maxId))
+                {
+                    int maxCurrent = Convert.ToInt16(maxId.Substring(3, maxId.Length - 2));
+                    int maxNext = maxCurrent + 1;
+                    string mastkaddnew = maxNext.ToString().PadLeft(4, '0');
+                    objInsert.MaSTK = "STK" + mastkaddnew;
+                }
+                else
+                {
+                    objInsert.MaSTK = "STK0001";
+                }
+
                 ctx.SoTietKiem.Add(objInsert);
                 ctx.SaveChanges();
                 retObjValueBackEnd.Success = true;

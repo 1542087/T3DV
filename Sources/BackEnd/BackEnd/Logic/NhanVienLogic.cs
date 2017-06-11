@@ -102,13 +102,20 @@ namespace BackEnd
             retObjValueBackEnd = new ReturnObjValueBackEnd();
             try
             {
-                
+                string maxId = "";
                 var ctx = new BankingContext();
-                string maxId = (from c in ctx.NhanVien select c.MaNV).Max();
-                int maxCurrent = Convert.ToInt16( maxId.Substring(2, maxId.Length-2));
-                int maxNext = maxCurrent + 1;
-                string manv = maxNext.ToString().PadLeft(4, '0');
-                staff.MaNV = "NV"+ manv;
+                maxId = (from c in ctx.NhanVien select c.MaNV).Max();
+                if (!string.IsNullOrEmpty(maxId))
+                {
+                    int maxCurrent = Convert.ToInt16(maxId.Substring(2, maxId.Length - 2));
+                    int maxNext = maxCurrent + 1;
+                    string manv = maxNext.ToString().PadLeft(4, '0');
+                    staff.MaNV = "NV" + manv;
+                }
+                else
+                {
+                    staff.MaNV = "NV0001";
+                }
                 ctx.NhanVien.Add(staff);
                 ctx.SaveChanges();
                 retObjValueBackEnd.Success = true;
