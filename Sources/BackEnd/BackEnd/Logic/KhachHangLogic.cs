@@ -9,16 +9,72 @@ namespace BackEnd
     class KhachHangLogic
     {
         ReturnObjValueBackEnd  retObjValueBackEnd = new ReturnObjValueBackEnd();
-        public ReturnObjValueBackEnd InsertCustomer(KhachHang customer)
+        public ReturnObjValueBackEnd InsertCustomer(KhachHang customer, string manv)
         {
             retObjValueBackEnd = new ReturnObjValueBackEnd();
+            string macn = "";
             try
             {
                 using (var context = new BankingContext())
                 {
+                    string maxId = "";
+                    maxId = (from c in context.KhachHang select c.MaKH).Max();
+                    if (!string.IsNullOrEmpty(maxId))
+                    {
+                        int maxCurrent = Convert.ToInt16(maxId.Substring(2, maxId.Length - 2));
+                        int maxNext = maxCurrent + 1;
+                        string makh = maxNext.ToString().PadLeft(4, '0');
+                        customer.MaKH = "KH" + makh;
+                    }
+                    else
+                    {
+                        customer.MaKH = "KH0001";
+                    }
+
                     context.KhachHang.Add(customer);
                     context.SaveChanges();
                     retObjValueBackEnd.Success = true;
+                    // Lấy mã chi nhánh dựa vào mã nhân viên
+                    var query = from ct in context.NhanVien
+                                select ct;
+                    query = query.Where(p => p.MaNV.Equals(manv));
+                    macn = query.ToList()[0].CNTrucThuoc;
+
+                    // Tạo tài khoản  mới cho khách hàng vừa mới add mới.
+                    TaiKhoan tk = new TaiKhoan();
+                    TaiKhoanLogic tklogic = new TaiKhoanLogic();
+                    string maxIdTK = "";
+                    maxIdTK = (from c in context.TaiKhoan select c.MaTK).Max();
+                    if (!string.IsNullOrEmpty(maxIdTK))
+                    {
+                        int maxCurrent = Convert.ToInt16(maxIdTK.Substring(2, maxId.Length - 2));
+                        int maxNext = maxCurrent + 1;
+                        string matkaddnew = maxNext.ToString().PadLeft(4, '0');
+                        tk.MaTK = "TK" + matkaddnew;
+                    }
+                    else
+                    {
+                        customer.MaKH = "TK0001";
+                    }
+
+                    if (!string.IsNullOrEmpty(customer.cmnd))
+                    {
+                        tk.SoTK = int.Parse(customer.cmnd);
+                    }
+                    else
+                    {
+                        tk.SoTK = 1234;
+                    }
+
+                    tk.MaKH = customer.MaKH;
+                    tk.NgayTao = DateTime.Now;
+                    tk.MaNV = manv;
+                    tk.MaCN = macn;
+                    tk.ChuThich = "";
+                    tk.SoDu = 0;
+                    // add record 
+                    tklogic.InsertAccount(tk);
+
                     return retObjValueBackEnd;
                 }
             }
