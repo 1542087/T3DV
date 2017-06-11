@@ -73,8 +73,9 @@ namespace BackEnd
                     tk.ChuThich = "";
                     tk.SoDu = 0;
                     // add record 
-                    tklogic.InsertAccount(tk);
-
+                    retObjValueBackEnd = tklogic.InsertAccount(tk);
+                    // Return mã tài khoản
+                    retObjValueBackEnd.MaTK = tk.MaTK;
                     return retObjValueBackEnd;
                 }
             }

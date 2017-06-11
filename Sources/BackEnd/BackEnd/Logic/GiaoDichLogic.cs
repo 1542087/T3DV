@@ -83,12 +83,129 @@ namespace BackEnd
             }
         }
 
+       /// <summary>
+        /// Hàm này để màn hình gọi xử lý thực thi giao dịch
+       /// </summary>
+       /// <param name="makh"></param>
+       /// <param name="manv"></param>
+       /// <param name="sotien"></param>
+       /// <param name="noidung"></param>
+       /// <param name="manguoinhan"></param>
+       /// <param name="loaiGD">
+       /// 1: gui tien
+       /// 2. rut tien
+       /// 3. chuyen tien
+       /// </param>
+       /// <returns></returns>
+        public ReturnObjValueBackEnd ThemMoiGiaoDich(string makh, string manv, decimal sotien, 
+                                                    string noidung, string manguoinhan, int loaiGD)
+        {
+            retObjValueBackEnd = new ReturnObjValueBackEnd();
+            try
+            {
+                string macn = "";
+                decimal soduttk = 0;
+                var ctx = new BankingContext();
+                // Lấy mã chi nhánh dựa vào mã nhân viên
+                var query = from ct in ctx.NhanVien
+                            select ct;
+                query = query.Where(p => p.MaNV.Equals(manv));
+                macn = query.ToList()[0].CNTrucThuoc;
+
+                // Lấy số dư tài khoản dựa vào makh, manv, macn
+                var queryTK = from tk in ctx.TaiKhoan
+                                where tk.MaKH.Equals(makh) &&
+                                tk.MaNV.Equals(manv) && tk.MaCN.Equals(macn)
+                                select tk;
+                soduttk = queryTK.ToList()[0].SoDu;
+
+                if (loaiGD != 1){
+                    if (soduttk < sotien)
+                    {
+                        retObjValueBackEnd.Message = "Số tiền giao dịch không hợp lệ.";
+                        retObjValueBackEnd.Success = true;
+                        return retObjValueBackEnd;
+                    }
+                }
+                // add new table giaodich
+                GiaoDich gd = new GiaoDich();
+                GiaoDichLogic gdLogic = new GiaoDichLogic();
+                gd.MaKH = makh;
+                gd.SoTien = sotien;
+                gd.NgayCapNhat = DateTime.Now;
+                string maxIdGD = "";
+                maxIdGD = (from c in ctx.GiaoDich select c.MaGD).Max();
+
+                if (!string.IsNullOrEmpty(maxIdGD))
+                {
+                    int maxCurrent = Convert.ToInt16(maxIdGD.Substring(2, maxIdGD.Length - 2));
+                    int maxNext = maxCurrent + 1;
+                    string magdaddnew = maxNext.ToString().PadLeft(4, '0');
+                    gd.MaGD = "GD" + magdaddnew;
+                }
+                else
+                {
+                    gd.MaGD = "GD0001";
+                }
+
+                retObjValueBackEnd = gdLogic.InsertDeal(gd);
+                if (retObjValueBackEnd.Success == false)
+                {
+                    retObjValueBackEnd = null;
+                    return retObjValueBackEnd;
+                }
+
+                // add table ChTietGiaoDich
+                ChiTietGiaoDich ctgd = new ChiTietGiaoDich();
+                CTGiaoDichLogic ctgdLogic = new CTGiaoDichLogic();
+                ctgd.MaGD = gd.MaGD;
+                ctgd.MaKH = gd.MaKH;
+                ctgd.NgayGD = gd.NgayCapNhat;
+                ctgd.MaNV = manv;
+                ctgd.MaCNNH = macn;
+                ctgd.SoTienGD = sotien;
+                ctgd.NoiDungGD = noidung;
+                ctgd.MaTKNguoiNhan = noidung;
+                ctgd.MaTKNguoiNhan = manguoinhan;
+
+                retObjValueBackEnd = ctgdLogic.InsertDealDetail(ctgd);
+                if(retObjValueBackEnd.Success == false ){
+                    retObjValueBackEnd = null;
+                    return retObjValueBackEnd;
+                }
+
+                retObjValueBackEnd = ctgdLogic.InsertDealDetail(ctgd);
+
+                // Cập nhật số tiền tại table TaiKoan
+                TaiKhoan tkupdate = new TaiKhoan();
+                TaiKhoanLogic tkupdateLogic = new TaiKhoanLogic();
+                tkupdate = queryTK.ToList()[0];
+                tkupdate.SoDu = tkupdate.SoDu - (decimal)gd.SoTien;
+                retObjValueBackEnd = tkupdateLogic.UpdateAccount(tkupdate);
+
+                // Return mã giao dịch và số dư còn lại
+                retObjValueBackEnd.MaGD = gd.MaGD;
+                retObjValueBackEnd.SoDuConLai = tkupdate.SoDu;
+                return retObjValueBackEnd;
+            }
+            catch (Exception ex)
+            {
+                retObjValueBackEnd.Success = false;
+                retObjValueBackEnd.Message = ex.ToString();
+                return retObjValueBackEnd;
+                throw ex;
+            }
+        }
+
+
         public ReturnObjValueBackEnd InsertDeal(GiaoDich objInsert)
         {
             retObjValueBackEnd = new ReturnObjValueBackEnd();
             try
             {
                 var ctx = new BankingContext();
+               
+
                 ctx.GiaoDich.Add(objInsert);
                 ctx.SaveChanges();
                 retObjValueBackEnd.Success = true;
