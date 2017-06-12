@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+<div class="panel panel-default" style="width: 100%; padding: 10px; margin: 10px">
+    <div id="Tabs" role="tabpanel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active">
+                <a href="#personal" aria-controls="personal" role="tab" data-toggle="tab">
+                Rút Tiền Trong Thẻ ATM</a>
+            </li>
+            <li>
+                <a href="#employment" aria-controls="employment" role="tab" data-toggle="tab">
+                    Rút Tiền Trong Sổ Tiết Kiệm
+                </a>
+            </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content" style="padding-top: 20px">
+            <div role="tabpanel" class="tab-pane active" id="personal">
+               
+                <form>
+                    <fieldset style="margin-bottom: 20px">
+                        <legend style="background-color: #0F9">Tài Khoản Thẻ </legend>
+                           <!-- Text input-->
+                           <div class="form-group form-horizontal">
+                             <label class="col-md-6 control-label" for="textinput">Chọn Tài Khoản</label>  
+                             <div class="col-md-6">
+                                 <select class="form-control">
+                                     <option>abc</option>
+                                 </select>
+                             </div>
+                           </div>
+                    </fieldset>
+                    
+                    <fieldset style="margin-bottom: 20px">
+                        <legend style="background-color: #0F9">Chi Tiết Tài Khoản Thẻ: </legend>
+                           <!-- Text input-->
+                           <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-md-6 control-label" for="textinput">Loại Tiền Rút </label>  
+                                <div class="col-md-6">
+                                     <div class="col-md-6">
+                                        <select class="form-control">
+                                            <option>VNĐ</option>
+                                            <option>USD</option>
+                                        </select>
+                                    </div>
+                                    
+                                    
+                                </div>
+                             </div>
+                               
+                               
+                             <div class="form-group">
+                                <label class="col-md-6 control-label" for="textinput">Số tiền Rút: </label>  
+                                <div class="col-md-6">
+                                <input id="sotienRut" name="txtTK_nguon"  class="form-control input-md" required="" type="text" value="">
+                                </div>
+                             </div>
+                            
+                             <div class="form-group">
+                             <label class="col-md-6 control-label" for="textinput">Chủ Tài Khoản</label>  
+                              <div class="col-md-6">
+                                <input id="chuTK" name="txtTK_nguon"  class="form-control input-md" required="" type="text" value=""  readonly="none">
+                              </div>
+                             </div>
+                            <div class="form-group">
+                              <label class="col-md-6 control-label" for="textinput">Số Dư Tài Khoản</label>  
+                              <div class="col-md-6">
+                                <input id="soduTK" name="soduTK"  class="form-control input-md" required="" type="text" value=""  readonly="none">
+                              </div>
+                            </div>
+                            </div>
+                    </fieldset>
+                    
+                     <fieldset style="margin-bottom: 20px">
+                        <legend style="background-color: #0F9">Chi Tiết Ngân Hàng: </legend>
+                           <!-- Text input-->
+                           <div class="form-group form-horizontal">
+                             <label class="col-md-6 control-label" for="textinput">Tài Khoản Thuộc Chi Nhánh</label>  
+                              <div class="col-md-6">
+                                <input id="sotienRut" name="txtTK_nguon"  class="form-control input-md" required="" type="text" value="" readonly="none">
+                              </div>
+                           </div>
+                    </fieldset>
+                    
+                    
+                    <input type="submit" value="Rút Tiền" name="btnRutTienThe" class="col-md-2 btn btn-toolbar btn-warning"  style="margin-left: 300px; margin-top: 30px"/>
+                </form>   
+                
+                
+            </div>
+            <div role="tabpanel" class="tab-pane" id="employment">
+               
+                 <form>
+                    <fieldset style="margin-bottom: 20px">
+                        <legend style="background-color: #0F9">Tài Khoản Sổ Tiết Kiệm </legend>
+                           <!-- Text input-->
+                           <div class="form-group form-horizontal">
+                             <label class="col-md-6 control-label" for="textinput">Chọn Tài Khoản</label>  
+                             <div class="col-md-6">
+                                 <select class="form-control">
+                                     <option>abc</option>
+                                 </select>
+                             </div>
+                           </div>
+                    </fieldset>
+                    
+                    <fieldset style="margin-bottom: 20px">
+                        <legend style="background-color: #0F9">Chi Tiết Tài Khoản STK: </legend>
+                           <!-- Text input-->
+                           <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-md-6 control-label" for="textinput">Loại Tiền Rút </label>  
+                                <div class="col-md-6">
+                                     <div class="col-md-6">
+                                        <select class="form-control">
+                                            <option>VNĐ</option>
+                                            <option>USD</option>
+                                        </select>
+                                    </div>       
+                                </div>
+                             </div>
+                               
+                               
+                             <div class="form-group">
+                                <label class="col-md-6 control-label" for="textinput">Số tiền Rút: </label>  
+                                <div class="col-md-6">
+                                <input id="sotienRut" name="txtTK_nguon"  class="form-control input-md" required="" type="text" value="">
+                                </div>
+                             </div>
+                            
+                             <div class="form-group">
+                             <label class="col-md-6 control-label" for="textinput">Chủ Sổ Tiết Kiệm</label>  
+                              <div class="col-md-6">
+                                <input id="chuTK" name="txtTK_nguon"  class="form-control input-md" required="" type="text" value=""  readonly="none">
+                              </div>
+                             </div>
+                            <div class="form-group">
+                              <label class="col-md-6 control-label" for="textinput">Số Dư STK</label>  
+                              <div class="col-md-6">
+                                <input id="soduTK" name="soduTK"  class="form-control input-md" required="" type="text" value=""  readonly="none">
+                              </div>
+                            </div>
+                               
+                             <label class="col-md-6 control-label" for="textinput">Đáo Hạn</label>  
+                             <div class="col-md-6">
+                                 <select class="form-control">
+                                     <option>1 tháng - CK</option>
+                                     <option>3 tháng - CK</option>
+                                     <option>6 tháng - CK</option>
+                                     <option>12 tháng - CK</option>
+                                     <option>24 tháng - CK</option>
+                                 </select>
+                             </div>
+                                
+                                
+                            </div>
+                    </fieldset>
+                    
+                     <fieldset style="margin-bottom: 20px">
+                        <legend style="background-color: #0F9">Chi Tiết Ngân Hàng: </legend>
+                           <!-- Text input-->
+                           <div class="form-group form-horizontal">
+                             <label class="col-md-6 control-label" for="textinput">Tài Khoản Thuộc Chi Nhánh</label>  
+                              <div class="col-md-6">
+                                <input id="sotienRut" name="txtTK_nguon"  class="form-control input-md" required="" type="text" value="" readonly="none">
+                              </div>
+                           </div>
+                    </fieldset>
+                    
+                    
+                    <input type="submit" value="Rút Tiền" name="btnRutTienThe" class="col-md-2 btn btn-toolbar btn-warning"  style="margin-left: 300px; margin-top: 30px"/>
+                </form> 
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+</html>
