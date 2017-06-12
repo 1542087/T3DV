@@ -74,7 +74,7 @@ public class StaffBusiness {
 		return null;
 	}
 	
-	public String getErrMessage() {
+	public String errorMessage() {
 		return this.errMessage;
 	}
 }

@@ -1,14 +1,16 @@
 package hcb.t3dv.pojo.request;
 
-public class CreateCustomerRequest {
+import hcb.t3dv.pojo.BaseRequest;
+
+public class CreateCustomerRequest extends BaseRequest {
 	
-	private String sessionID;
+	private Data data;
 	
-	public String getSessionID() {
-		return sessionID;
+	public Data getData() {
+		return data;
 	}
-	public void setSessionID(String sessionID) {
-		this.sessionID = sessionID;
+	public void setData(Data data) {
+		this.data = data;
 	}
 
 	public static class Data {

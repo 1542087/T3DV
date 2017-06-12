@@ -1,5 +1,13 @@
 package hcb.t3dv.pojo;
 
 public class BaseRequest {
-	public String sessionID;
+	private String sessionID;
+
+	public String getSessionID() {
+		return sessionID;
+	}
+
+	public void setSessionID(String sessionID) {
+		this.sessionID = sessionID;
+	}
 }
