@@ -50,4 +50,6 @@ $(document).ready(function(){
     });
 });
 
+var root_url = "http://localhost:8080/15hcb2.t3dv/";
+
 

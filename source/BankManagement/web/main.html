@@ -75,7 +75,7 @@
           </div> <!-- icon them khach hang-->
             <script type="text/javascript">
                     $('#dsKH').click(function (){
-                          $('#createTK').load("DSKhachHang.jsp"); 
+                          $('#createTK').load("DSKhachHang.html"); 
                     });     
             </script>
       </div>
@@ -112,14 +112,16 @@
         <!-- icon rut tien-->
         <div class="row" style="margin-top:20px">
             <div class="col-md-offset-3">
-                  <button type="button" class="btn btn-info btn-squre" style="padding:0px">
+                <button id="ruttien" type="button" class="btn btn-info btn-squre" style="padding:0px">
                     <img src="Images/ruttien.png" width="80px" height="80px" class="img-circle text-center"/>
                   </button><br />
                 <b style="padding-left:20px">Rút Tiền</b>
               </div> <!-- icon rut tien-->
-             <script>
-               document.getElementById('createTK').innerHTML= "ChuyenTien_Next.html";
-             </script>
+              <script type="text/javascript">
+                    $('#ruttien').click(function (){
+                          $('#createTK').load("RutTien.html"); 
+                    });     
+              </script>
         </div> <!-- icon so tiet kiem-->
         <div class="row" style="margin-top:20px">
             <div class="col-md-offset-3">

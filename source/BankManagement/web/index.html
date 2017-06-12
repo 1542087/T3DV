@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Login</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<script src="js/newscript.js"></script>
 </head>
 	<style>
     body{
@@ -16,6 +17,31 @@
 		background-color:#FA7F6D;
 		}
     </style>
+    <script>
+        function authenticate(username, password) {
+            var data = {
+                        id: username,
+                        password: password,
+                        branch: 'cn1'   
+            };
+            $.ajax
+            ({
+                type: "POST",
+                //the url where you want to sent the userName and password to
+                url: root_url + '/api/staff/auth',
+                dataType: 'json',
+                async: false,
+                //json object to sent to the authentication url
+                data: data,
+                success: function (response) {
+                    sessionStorage.setItem("sessionID", response.sessionID); 
+                }
+            })
+        }
+        $(document).ready(function() {
+            authenticate();
+        });
+    </script>
 <body>
 <div class="container">
 		<div class="panel panel-heading col-md-8 col-md-offset-2 text-center" style="font-size:30px">Chào Mừng bạn đến với Ngân Hàng T3DV</div>    
