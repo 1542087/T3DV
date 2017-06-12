@@ -3,6 +3,7 @@
 <head>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Bank Management</title>
+    <meta charset="utf-8">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
      <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -23,8 +24,40 @@
     </style>
     <script src="js/newscript.js"></script>
     <script>
+        
+        function getMaKH(idKH)
+        {
+            sessionStorage.setItem("maKH", idKH); 
+        }
         function DSKhachHang() {
-            
+           // var tdDropdown = '<td><p data-placement="top" data-toggle="tooltip" title="Edit"><div class="dropdown"><button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-pencil"></span></button><ul class="dropdown-menu"><li><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li></ul></div></p></td>';
+                            var checkbox = document.createElement("td");
+                            var checkbox_input = document.createElement("input");
+                            checkbox_input.setAttribute("type", "checkbox");
+                            checkbox_input.setAttribute("class", "checkthis");
+                           // ("onclick='getMaKH(123);' type='checkbox' class='checkthis'");
+                            checkbox.appendChild(checkbox_input);
+                            var tdTaiKhoan = document.createElement("td");
+                            var t = document.createTextNode("sdfsdf"); 
+                            tdTaiKhoan.appendChild(t);
+                            var tdTen = document.createElement("td");
+                            var t = document.createTextNode("sdfsdf"); 
+                            tdTen.appendChild(t);
+                            var tdGT = document.createElement("td");
+                            var t = document.createTextNode("sdfsdf"); 
+                            tdGT.appendChild(t);
+                            var tdDiaChi = document.createElement("td");
+                            var t = document.createTextNode("sdfsdf"); 
+                            tdDiaChi.appendChild(t);
+                            var tdEmail = document.createElement("td");
+                            var t = document.createTextNode("sdfsdf"); 
+                            tdEmail.appendChild(t);
+                            var tdPhone = document.createElement("td");
+                            var t = document.createTextNode("sdfsdf"); 
+                            tdPhone.appendChild(t);
+                            var tr = document.createElement("tr");
+                            tr.append(checkbox, tdTaiKhoan,tdTen,tdGT,tdDiaChi,tdEmail,tdPhone);
+                            $("#tab").append(tr);
             $.ajax
             ({
                 type: "POST",
@@ -40,7 +73,7 @@
                         var tdDropdown = '<td><p data-placement="top" data-toggle="tooltip" title="Edit"><div class="dropdown"><button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-pencil"></span></button><ul class="dropdown-menu"><li><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li></ul></div></p></td>';
                         var customers = response.data;
                         for(var i = 0; i < customers.length; i++) {
-                            var checkbox = '<td><input type="checkbox" class="checkthis" /></td>';
+                            var checkbox = '<td><input onclick="getMaKH('+customers[i].id+');" type="checkbox" class="checkthis" /></td>';
                             var tdTaiKhoan = '<td>' + customers[i].id +'</td>';
                             var tdTen = '<td>' + customers[i].name +'</td>';
                             var tdGT = '<td>Nam</td>';
@@ -49,9 +82,8 @@
                             var tdPhone = '<td>' + customers[i].phone +'</td>';
                             var tr = document.createElement("tr");
                             tr.append(checkbox, tdTaiKhoan,tdTen,tdGT,tdDiaChi,tdEmail,tdPhone);
-                            $("#tab").append(tr);
+                           // $("#tab").append(tr);
                         }
-                            
                     } else {
                         alert(response.message);
                     }
@@ -65,7 +97,8 @@
 	<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
 	<script>
 	$(document).ready(function(){
-            DSKhachHang();
+            //DSKhachHang();
+            $( "#editbutton" ).load("ThaydoiTT_KH.jsp");
 	$("#mytable #checkall").click(function () {
 			if ($("#mytable #checkall").is(':checked')) {
 				$("#mytable input[type=checkbox]").each(function () {
@@ -121,7 +154,7 @@
                  </thead>
     <tbody id="tab">
     
-   <!-- <tr>
+    <tr>
         <td><input type="checkbox" class="checkthis" /></td>
         <td>TK001</td>
         <td>Trần THành</td>
@@ -130,24 +163,19 @@
         <td>haz@gmail.com</td>
         <td>xxxxx</td>
         <td>
-            <p data-placement="top" data-toggle="tooltip" title="Edit">
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                    </ul>
-                </div>
-            </p>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
         </td>
         <td>
-            <p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p>
+            <p data-placement="top" data-toggle="tooltip" title="Delete">
+                <button button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#remove">
+                    <span class="glyphicon glyphicon-trash">    
+                    </span>
+                </button></p>
         </td>
     </tr>
-    -->
+    
    </tbody>
             
     </table> 
@@ -171,6 +199,91 @@
    
     <jsp:include page="Xoa_KH.jsp"></jsp:include>
     
+    
+ 
+   <div id="edit" class="modal fade" role="dialog">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        <h4 class="modal-title custom_align" id="Heading">Thêm Thông Tin Khách Hàng</h4>
+        </div>
+          <div class="modal-body">
+        <div class="form-group">
+            <b>Mã Khách Hàng</b>
+            <input class="form-control " type="text" placeholder="Mã Khách Hàng" id="maKH" name="maKH">
+        </div>
+            <b>Tên Khách Hàng</b>
+            <div class="form-group">
+            <input class="form-control " type="text" placeholder="Tên Khách Hàng" id="tenKH" name="tenKH">
+        </div>
+            <b>Giới Tính</b>
+            <div class="form-group">
+                <select class="form-control">
+                    <option>Nam</option>
+                    <option>Nữ</option>
+                </select>
+            </div>
+        <b>Ngày Sinh</b>
+        <div class="control-group">
+                <div class="controls input-append date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input size="16" type="text" value="" readonly>
+                    <span class="add-on"><i class="icon-remove"></i></span>
+                    <span class="add-on"><i class="icon-th"></i></span>
+                </div>
+                    <input type="hidden" id="dtp_input2" value="" /><br/>
+        </div>
+            <b>Địa Chỉ</b>
+        <div class="form-group">
+            <textarea rows="2" class="form-control" placeholder=" Địa Chỉ" id="diaChi" name="diaChi" ></textarea>
+        </div>
+        
+        <b>Số Điện Thoại</b>
+        <div class="form-group">
+        <input class="form-control " type="text" placeholder="Số Điện Thoại" id="soDT" name="soDT">
+        </div>
+
+        </div>
+        
+          <div class="modal-footer ">
+        <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-pencil"></span> Update</button>
+      </div>
+      </div>
+    <!-- /.modal-content --> 
+  </div>
+      <!-- /.modal-dialog --> 
+  </div>  
+    
+    
+    
+    
+    
+       <div id="remove" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+    <div class="modal-content">
+          <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        <h4 class="modal-title custom_align" id="Heading">Delete Khách Hàng</h4>
+      </div>
+          <div class="modal-body">
+       
+       <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> 
+           <b>Bạn có chắc delete khách hàng này?</b></div>
+       
+      </div>
+        <div class="modal-footer ">
+        <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+      </div>
+        </div>
+    <!-- /.modal-content --> 
+  </div>
+      <!-- /.modal-dialog -->    
+   </div><!-- middle-->
+   
+   
+   
  </body>
 </html>
 

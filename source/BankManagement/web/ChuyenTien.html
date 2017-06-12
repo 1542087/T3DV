@@ -12,6 +12,38 @@ and open the template in the editor.
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     </head>
+        <script>
+        function ChuyenTien(tkNhan, tkGui, soTien) {
+            var data = {
+                        receiver: username,
+                        sender: password,
+                        amount: soTien,
+            };
+            $.ajax
+            ({
+                type: "POST",
+                //the url where you want to sent the userName and password to
+                url: root_url + '/api/transactions/transfer',
+                dataType: 'json',
+                async: false,
+                //json object to sent to the authentication url
+                 data: {"data":data, "sessionID":sessionStorage.getItem("sessionID")},
+                success: function (response) {
+                    if(response.success == true)
+                    {
+                        sessionStorage.setItem("transactionID",data.transactionID);
+                        sessionStorage.setItem("date",data.date);
+                        sessionStorage.setItem("balance",data.balance);
+                    }
+                }
+            })
+        }
+        $(document).ready(function() {
+           ChuyenTien(document.getElementById('txtTK_Nhan').value,
+           ChuyenTien(document.getElementById('txtTK_Nhan').value,
+           ChuyenTien(document.getElementById('txtTK_Nhan').value)
+        });
+    </script>
     <body>
         <form action="ChuyenTien" method="POST">
                     <fieldset style="margin-bottom: 20px">
@@ -34,7 +66,7 @@ and open the template in the editor.
                              <div class="form-group">
                                 <label class="col-md-6 control-label" for="textinput">Tài Khoản Nhận </label>  
                                 <div class="col-md-6">
-                                <input id="txtTK_nguon" name="txtTK_nguon"  class="form-control input-md" required="" type="text" value="">
+                                <input id="txtTK_Nhan" name="txtTK_Nhan"  class="form-control input-md" required="" type="text" value="">
                                 </div>
                              </div>
                              <div class="form-group">
