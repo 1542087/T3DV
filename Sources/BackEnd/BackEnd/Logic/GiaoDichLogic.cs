@@ -184,8 +184,10 @@ namespace BackEnd
                 retObjValueBackEnd = tkupdateLogic.UpdateAccount(tkupdate);
 
                 // Return mã giao dịch và số dư còn lại
-                retObjValueBackEnd.MaGD = gd.MaGD;
-                retObjValueBackEnd.SoDuConLai = tkupdate.SoDu;
+                Transaction transaction = new Transaction();
+                transaction.MaGD = gd.MaGD;
+                transaction.SoDuConLai = tkupdate.SoDu;
+                retObjValueBackEnd.Data = transaction;
                 return retObjValueBackEnd;
             }
             catch (Exception ex)

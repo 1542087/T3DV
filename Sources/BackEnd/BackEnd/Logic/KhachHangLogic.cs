@@ -75,7 +75,7 @@ namespace BackEnd
                     // add record 
                     retObjValueBackEnd = tklogic.InsertAccount(tk);
                     // Return mã tài khoản
-                    retObjValueBackEnd.MaTK = tk.MaTK;
+                    retObjValueBackEnd.Data = tk.MaTK;
                     return retObjValueBackEnd;
                 }
             }

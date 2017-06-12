@@ -4,8 +4,10 @@ import hcb.t3dv.dao.ModelCustomer;
 import hcb.t3dv.dao.ModelTransaction;
 
 public class Transaction {
+	
 	protected String transactionID;
 	protected String date;
+	protected String message;
 	protected float balance;
 	protected float amount;
 	
@@ -32,6 +34,12 @@ public class Transaction {
 	}
 	public void setAmount(float amount) {
 		this.amount = amount;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
 	}
 	
 	public ModelTransaction toModel(Staff staff, Customer customer) {

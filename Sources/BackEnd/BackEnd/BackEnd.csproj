@@ -66,6 +66,7 @@
     <Compile Include="Logic\RestAPILogic.cs" />
     <Compile Include="Logic\SoTietKiemLogic.cs" />
     <Compile Include="Logic\TaiKhoanLogic.cs" />
+    <Compile Include="Logic\Transaction.cs" />
     <Compile Include="Logic\UserLogic.cs" />
     <Compile Include="MSTUSER.cs" />
     <Compile Include="NganHang.cs" />

@@ -14,7 +14,12 @@ public class CredentialChecker {
 		this.staffRepository = staffRepository;
 	}
 
-	public boolean hasCredential(String token) {
+	/**
+	 * return staff id
+	 * @param token
+	 * @return
+	 */
+	public String hasCredential(String token) {
 		String[] credentials = token.split(",");
 		if(credentials.length == 2) {
 			String userID = credentials[0];
@@ -33,12 +38,12 @@ public class CredentialChecker {
 			};
 			try {
 				Staff staff = staffRepository.getSingle(spec);
-				return staff != null;
+				return staff._id;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		return false;
+		return null;
 	}
 	
 }
