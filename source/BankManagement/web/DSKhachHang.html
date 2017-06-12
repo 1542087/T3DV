@@ -21,11 +21,51 @@
 				background:#FF9;
 	}
     </style>
+    <script src="js/newscript.js"></script>
+    <script>
+        function DSKhachHang() {
+            
+            $.ajax
+            ({
+                type: "POST",
+                //the url where you want to sent the userName and password to
+                url: root_url + '/api/staff/customers',
+                dataType: 'json',
+                async: false,
+                //json object to sent to the authentication url
+                data: {"sessionID":sessionStorage.getItem("sessionID")},
+                success: function (response) {
+                    if(response.success == true)   
+                    {
+                        var tdDropdown = '<td><p data-placement="top" data-toggle="tooltip" title="Edit"><div class="dropdown"><button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-pencil"></span></button><ul class="dropdown-menu"><li><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li></ul></div></p></td>';
+                        var customers = response.data;
+                        for(var i = 0; i < customers.length; i++) {
+                            var checkbox = '<td><input type="checkbox" class="checkthis" /></td>';
+                            var tdTaiKhoan = '<td>' + customers[i].id +'</td>';
+                            var tdTen = '<td>' + customers[i].name +'</td>';
+                            var tdGT = '<td>Nam</td>';
+                            var tdDiaChi = '<td>' + customers[i].address +'</td>';
+                            var tdEmail = '<td>dev@gmail.com</td>';
+                            var tdPhone = '<td>' + customers[i].phone +'</td>';
+                            var tr = document.createElement("tr");
+                            tr.append(checkbox, tdTaiKhoan,tdTen,tdGT,tdDiaChi,tdEmail,tdPhone);
+                            $("#tab").append(tr);
+                        }
+                            
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            })
+        }
+        
+    </script>
   </head>
   	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
 	<script>
 	$(document).ready(function(){
+            DSKhachHang();
 	$("#mytable #checkall").click(function () {
 			if ($("#mytable #checkall").is(':checked')) {
 				$("#mytable input[type=checkbox]").each(function () {
@@ -79,9 +119,9 @@
                    <th>Edit</th>
                    <th>Delete</th>
                  </thead>
-    <tbody>
+    <tbody id="tab">
     
-    <tr>
+   <!-- <tr>
         <td><input type="checkbox" class="checkthis" /></td>
         <td>TK001</td>
         <td>Trần THành</td>
@@ -107,30 +147,7 @@
             <p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p>
         </td>
     </tr>
-    
- <tr>
-    <td><input type="checkbox" class="checkthis" /></td>
-    <td>TK002</td>
-    <td>Trần THành</td>
-    <td>Nam</td>
-    <td>Tphcm</td>
-    <td>haz@gmail.com</td>
-    <td>xxxxx</td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Edit">
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                    </ul>
-                </div>
-            </p></td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-  </tr>
-    
+    -->
    </tbody>
             
     </table> 

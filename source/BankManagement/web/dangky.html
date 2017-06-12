@@ -12,8 +12,47 @@
             margin-top: 20px;   
             background-color: #D9EDF7;
         }
-   </style> 
+   </style>
+ <script src="js/newscript.js"></script>
+    <script>
+        function TaoTaiKhoan(maKH, tenKH, sdt, add, birth, sex ) {
+            var data = {
+                        identification: maKH,
+                        name: tenKH,
+                        address: add,
+                        phone: sdt,
+                        birthday: birth,
+                        sex: sex,
+            };
+            $.ajax
+            ({
+                type: "POST",
+                //the url where you want to sent the userName and password to
+                url: root_url + '/api/staff/newcustomer',
+                dataType: 'json',
+                async: false,
+                //json object to sent to the authentication url
+                data: {"data":data, "sessionID":sessionStorage.getItem("sessionID")},
+                success: function (response) {
+                    if(response.success == true)   
+                    {
+                        var accountID = response.data.accountID;
+                        if(accountID!=null)
+                             alert('Tao Tai Khoan Thanh Cong');
+                        
+                    }else {
+                        alert(response.message);
+                    }
+                }
+            })
+        }
+    </script>
 </head>
+    <script>
+        $(document).ready(function() {
+            TaoTaiKhoan();
+        });
+    </script>
 <body>
     <form class="form-horizontal">
         <div class="form-group text-center" style="font-size: 20px; color:red; font-weight: bold; margin-left: 60px; ">
